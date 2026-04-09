@@ -288,10 +288,10 @@ def build_token_script(primitives, semantic, spacing, typography, shadows) -> st
     """
     Build the <script> block that will replace the content between the sync markers.
     """
-    # Split spacing by collection
-    spacing_tokens = [t for t in spacing if t["collection"] == "Spacing"]
-    radius_tokens  = [t for t in spacing if t["collection"] == "Border Radius"]
-    ls_tokens      = [t for t in spacing if t["collection"] == "Letter Spacing"]
+    # Split spacing by collection (gracefully handle missing "collection" key)
+    spacing_tokens = [t for t in spacing if isinstance(t, dict) and t.get("collection") == "Spacing"]
+    radius_tokens  = [t for t in spacing if isinstance(t, dict) and t.get("collection") == "Border Radius"]
+    ls_tokens      = [t for t in spacing if isinstance(t, dict) and t.get("collection") == "Letter Spacing"]
 
     colors_json  = json.dumps(primitives, ensure_ascii=False)
     spacing_json = json.dumps(spacing_tokens, ensure_ascii=False)
