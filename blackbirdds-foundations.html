@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackBirdDS — Foundations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  // Tokens extraídos do Figma via BlackBirdDS MCP — gerado automaticamente
+  window.FIGMA_DS = {"colors": [{"name": "black", "hex": "#000000", "group": "Primitives"}, {"name": "white", "hex": "#FFFFFF", "group": "Primitives"}, {"name": "colors/brand/050", "hex": "#EEF6FF", "group": "Brand"}, {"name": "colors/brand/100", "hex": "#DBEAFE", "group": "Brand"}, {"name": "colors/brand/200", "hex": "#BEDBFF", "group": "Brand"}, {"name": "colors/brand/300", "hex": "#8EC5FF", "group": "Brand"}, {"name": "colors/brand/400", "hex": "#51A2FF", "group": "Brand"}, {"name": "colors/brand/500", "hex": "#2B7FFF", "group": "Brand"}, {"name": "colors/brand/600", "hex": "#155DFC", "group": "Brand"}, {"name": "colors/brand/700", "hex": "#1447E6", "group": "Brand"}, {"name": "colors/brand/800", "hex": "#193CB8", "group": "Brand"}, {"name": "colors/brand/900", "hex": "#1C398E", "group": "Brand"}, {"name": "colors/brand/950", "hex": "#162455", "group": "Brand"}, {"name": "colors/slate/050", "hex": "#F8FAFC", "group": "Slate"}, {"name": "colors/slate/100", "hex": "#F1F5F9", "group": "Slate"}, {"name": "colors/slate/200", "hex": "#E2E8F0", "group": "Slate"}, {"name": "colors/slate/300", "hex": "#CAD5E2", "group": "Slate"}, {"name": "colors/slate/400", "hex": "#90A1B9", "group": "Slate"}, {"name": "colors/slate/500", "hex": "#62748E", "group": "Slate"}, {"name": "colors/slate/600", "hex": "#45556C", "group": "Slate"}, {"name": "colors/slate/700", "hex": "#314158", "group": "Slate"}, {"name": "colors/slate/800", "hex": "#1D293D", "group": "Slate"}, {"name": "colors/slate/900", "hex": "#131C34", "group": "Slate"}, {"name": "colors/slate/950", "hex": "#020618", "group": "Slate"}, {"name": "colors/gray/050", "hex": "#F9FAFB", "group": "Gray"}, {"name": "colors/gray/100", "hex": "#F3F4F6", "group": "Gray"}, {"name": "colors/gray/200", "hex": "#E5E7EB", "group": "Gray"}, {"name": "colors/gray/300", "hex": "#D1D5DC", "group": "Gray"}, {"name": "colors/gray/400", "hex": "#99A1AF", "group": "Gray"}, {"name": "colors/gray/500", "hex": "#6A7282", "group": "Gray"}, {"name": "colors/gray/600", "hex": "#4A5565", "group": "Gray"}, {"name": "colors/gray/700", "hex": "#333E4F", "group": "Gray"}, {"name": "colors/gray/800", "hex": "#1E2939", "group": "Gray"}, {"name": "colors/gray/900", "hex": "#101828", "group": "Gray"}, {"name": "colors/gray/950", "hex": "#030712", "group": "Gray"}, {"name": "colors/red/050", "hex": "#FEF2F2", "group": "Red"}, {"name": "colors/red/100", "hex": "#FFE2E2", "group": "Red"}, {"name": "colors/red/200", "hex": "#FFC9C9", "group": "Red"}, {"name": "colors/red/300", "hex": "#FFA2A2", "group": "Red"}, {"name": "colors/red/400", "hex": "#FF6467", "group": "Red"}, {"name": "colors/red/500", "hex": "#FB2C36", "group": "Red"}, {"name": "colors/red/600", "hex": "#E7000B", "group": "Red"}, {"name": "colors/red/700", "hex": "#C10007", "group": "Red"}, {"name": "colors/red/800", "hex": "#9F0712", "group": "Red"}, {"name": "colors/red/900", "hex": "#82181A", "group": "Red"}, {"name": "colors/red/950", "hex": "#460809", "group": "Red"}, {"name": "colors/orange/050", "hex": "#FFF8F1", "group": "Orange"}, {"name": "colors/orange/100", "hex": "#FEECDC", "group": "Orange"}, {"name": "colors/orange/200", "hex": "#FCD9BD", "group": "Orange"}, {"name": "colors/orange/300", "hex": "#FDBA8C", "group": "Orange"}, {"name": "colors/orange/400", "hex": "#FF8A4C", "group": "Orange"}, {"name": "colors/orange/500", "hex": "#FF5A1F", "group": "Orange"}, {"name": "colors/orange/600", "hex": "#D03801", "group": "Orange"}, {"name": "colors/orange/700", "hex": "#B43403", "group": "Orange"}, {"name": "colors/orange/800", "hex": "#8A2C0D", "group": "Orange"}, {"name": "colors/orange/900", "hex": "#771D1D", "group": "Orange"}, {"name": "colors/orange/950", "hex": "#441306", "group": "Orange"}, {"name": "colors/yellow/050", "hex": "#FEFCE8", "group": "Yellow"}, {"name": "colors/yellow/100", "hex": "#FEF9C2", "group": "Yellow"}, {"name": "colors/yellow/200", "hex": "#FFF085", "group": "Yellow"}, {"name": "colors/yellow/300", "hex": "#FFDF20", "group": "Yellow"}, {"name": "colors/yellow/400", "hex": "#FDC700", "group": "Yellow"}, {"name": "colors/yellow/500", "hex": "#F0B100", "group": "Yellow"}, {"name": "colors/yellow/600", "hex": "#D08700", "group": "Yellow"}, {"name": "colors/yellow/700", "hex": "#A65F00", "group": "Yellow"}, {"name": "colors/yellow/800", "hex": "#894B00", "group": "Yellow"}, {"name": "colors/yellow/900", "hex": "#733E0A", "group": "Yellow"}, {"name": "colors/yellow/950", "hex": "#432004", "group": "Yellow"}, {"name": "colors/green/50", "hex": "#F0FDF4", "group": "Green"}, {"name": "colors/green/100", "hex": "#DCFCE7", "group": "Green"}, {"name": "colors/green/200", "hex": "#B9F8CF", "group": "Green"}, {"name": "colors/green/300", "hex": "#7BF1A8", "group": "Green"}, {"name": "colors/green/400", "hex": "#05DF72", "group": "Green"}, {"name": "colors/green/500", "hex": "#00C950", "group": "Green"}, {"name": "colors/green/600", "hex": "#00A63E", "group": "Green"}, {"name": "colors/green/700", "hex": "#008236", "group": "Green"}, {"name": "colors/green/800", "hex": "#016630", "group": "Green"}, {"name": "colors/green/900", "hex": "#0D542B", "group": "Green"}, {"name": "colors/green/950", "hex": "#032E15", "group": "Green"}, {"name": "colors/teal/50", "hex": "#F0FDFA", "group": "Teal"}, {"name": "colors/teal/100", "hex": "#CBFBF1", "group": "Teal"}, {"name": "colors/teal/200", "hex": "#96F7E4", "group": "Teal"}, {"name": "colors/teal/300", "hex": "#46ECD5", "group": "Teal"}, {"name": "colors/teal/400", "hex": "#00D5BE", "group": "Teal"}, {"name": "colors/teal/500", "hex": "#00BBA7", "group": "Teal"}, {"name": "colors/teal/600", "hex": "#009689", "group": "Teal"}, {"name": "colors/teal/700", "hex": "#00786F", "group": "Teal"}, {"name": "colors/teal/800", "hex": "#005F59", "group": "Teal"}, {"name": "colors/teal/900", "hex": "#0D4E4A", "group": "Teal"}, {"name": "colors/teal/950", "hex": "#032F2E", "group": "Teal"}, {"name": "colors/indigo/50", "hex": "#EEF2FF", "group": "Indigo"}, {"name": "colors/indigo/100", "hex": "#E0E7FF", "group": "Indigo"}, {"name": "colors/indigo/200", "hex": "#C6D2FF", "group": "Indigo"}, {"name": "colors/indigo/300", "hex": "#A3B3FF", "group": "Indigo"}, {"name": "colors/indigo/400", "hex": "#7C86FF", "group": "Indigo"}, {"name": "colors/indigo/500", "hex": "#615FFF", "group": "Indigo"}, {"name": "colors/indigo/600", "hex": "#4F39F6", "group": "Indigo"}, {"name": "colors/indigo/700", "hex": "#432DD7", "group": "Indigo"}, {"name": "colors/indigo/800", "hex": "#372AAC", "group": "Indigo"}, {"name": "colors/indigo/900", "hex": "#312C85", "group": "Indigo"}, {"name": "colors/indigo/950", "hex": "#1E1A4D", "group": "Indigo"}, {"name": "colors/purple/050", "hex": "#FAF5FF", "group": "Purple"}, {"name": "colors/purple/100", "hex": "#F3E8FF", "group": "Purple"}, {"name": "colors/purple/200", "hex": "#E9D4FF", "group": "Purple"}, {"name": "colors/purple/300", "hex": "#DAB2FF", "group": "Purple"}, {"name": "colors/purple/400", "hex": "#C27AFF", "group": "Purple"}, {"name": "colors/purple/500", "hex": "#AD46FF", "group": "Purple"}, {"name": "colors/purple/600", "hex": "#9810FA", "group": "Purple"}, {"name": "colors/purple/700", "hex": "#8200DB", "group": "Purple"}, {"name": "colors/purple/800", "hex": "#6E11B0", "group": "Purple"}, {"name": "colors/purple/900", "hex": "#59168B", "group": "Purple"}, {"name": "colors/purple/950", "hex": "#3C0366", "group": "Purple"}, {"name": "colors/pink/050", "hex": "#FDF2F8", "group": "Pink"}, {"name": "colors/pink/100", "hex": "#FCE7F3", "group": "Pink"}, {"name": "colors/pink/200", "hex": "#FCCEE8", "group": "Pink"}, {"name": "colors/pink/300", "hex": "#FDA5D5", "group": "Pink"}, {"name": "colors/pink/400", "hex": "#FB64B6", "group": "Pink"}, {"name": "colors/pink/500", "hex": "#F6339A", "group": "Pink"}, {"name": "colors/pink/600", "hex": "#E60076", "group": "Pink"}, {"name": "colors/pink/700", "hex": "#C6005C", "group": "Pink"}, {"name": "colors/pink/800", "hex": "#A3004C", "group": "Pink"}, {"name": "colors/pink/900", "hex": "#861043", "group": "Pink"}, {"name": "colors/pink/950", "hex": "#510424", "group": "Pink"}, {"name": "colors/amber/050", "hex": "#FFFBEB", "group": "Amber"}, {"name": "colors/amber/100", "hex": "#FEF3C6", "group": "Amber"}, {"name": "colors/amber/200", "hex": "#FEE685", "group": "Amber"}, {"name": "colors/amber/300", "hex": "#FFD230", "group": "Amber"}, {"name": "colors/amber/400", "hex": "#FFB900", "group": "Amber"}, {"name": "colors/amber/500", "hex": "#FE9A00", "group": "Amber"}, {"name": "colors/amber/600", "hex": "#E17100", "group": "Amber"}, {"name": "colors/amber/700", "hex": "#BB4D00", "group": "Amber"}, {"name": "colors/amber/800", "hex": "#973C00", "group": "Amber"}, {"name": "colors/amber/900", "hex": "#7B3306", "group": "Amber"}, {"name": "colors/amber/950", "hex": "#461901", "group": "Amber"}, {"name": "colors/sky/050", "hex": "#F0F9FF", "group": "Sky"}, {"name": "colors/sky/100", "hex": "#DFF2FE", "group": "Sky"}, {"name": "colors/sky/200", "hex": "#B8E6FE", "group": "Sky"}, {"name": "colors/sky/300", "hex": "#74D4FF", "group": "Sky"}, {"name": "colors/sky/400", "hex": "#00BCFF", "group": "Sky"}, {"name": "colors/sky/500", "hex": "#00A6F4", "group": "Sky"}, {"name": "colors/sky/600", "hex": "#0084D1", "group": "Sky"}, {"name": "colors/sky/700", "hex": "#0069A8", "group": "Sky"}, {"name": "colors/sky/800", "hex": "#00598A", "group": "Sky"}, {"name": "colors/sky/900", "hex": "#024A70", "group": "Sky"}, {"name": "colors/sky/950", "hex": "#052F4A", "group": "Sky"}], "spacing": [{"name": "spacing/px", "value": 1}, {"name": "spacing/0.5", "value": 2}, {"name": "spacing/1", "value": 4}, {"name": "spacing/1.5", "value": 6}, {"name": "spacing/2", "value": 8}, {"name": "spacing/2.5", "value": 10}, {"name": "spacing/3", "value": 12}, {"name": "spacing/3.5", "value": 14}, {"name": "spacing/4", "value": 16}, {"name": "spacing/4.5", "value": 18}, {"name": "spacing/5", "value": 20}, {"name": "spacing/6", "value": 24}, {"name": "spacing/7", "value": 28}, {"name": "spacing/8", "value": 32}, {"name": "spacing/9", "value": 36}, {"name": "spacing/10", "value": 40}, {"name": "spacing/11", "value": 44}, {"name": "spacing/12", "value": 48}, {"name": "spacing/14", "value": 56}, {"name": "spacing/16", "value": 64}, {"name": "spacing/20", "value": 80}, {"name": "spacing/24", "value": 96}, {"name": "spacing/28", "value": 112}, {"name": "spacing/32", "value": 128}, {"name": "spacing/36", "value": 144}, {"name": "spacing/40", "value": 160}, {"name": "spacing/48", "value": 192}, {"name": "spacing/56", "value": 224}, {"name": "spacing/64", "value": 256}, {"name": "spacing/80", "value": 320}, {"name": "spacing/96", "value": 384}, {"name": "font/letter-spacing/tracking-tighter", "value": -0.8}, {"name": "font/letter-spacing/tracking-tight", "value": -0.4}, {"name": "font/letter-spacing/tracking-normal", "value": 0}, {"name": "font/letter-spacing/tracking-wide", "value": 0.4}, {"name": "font/letter-spacing/tracking-wider", "value": 0.8}, {"name": "font/letter-spacing/tracking-widest", "value": 1.6}], "radii": [{"name": "border-radius/rounded-0", "value": 0}, {"name": "border-radius/rounded-sm", "value": 2}, {"name": "border-radius/rounded", "value": 4}, {"name": "border-radius/rounded-md", "value": 6}, {"name": "border-radius/rounded-lg", "value": 8}, {"name": "border-radius/rounded-xl", "value": 12}, {"name": "border-radius/rounded-2xl", "value": 16}, {"name": "border-radius/rounded-3xl", "value": 24}, {"name": "border-radius/rounded-full", "value": 9999}], "textStyles": [{"name": "text-xs/font-thin", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-light", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-normal", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-medium", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-semibold", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-bold", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xs/font-black", "fontSize": 12, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-thin", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-light", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-normal", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-medium", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-semibold", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-bold", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-sm/font-black", "fontSize": 14, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-thin", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-light", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-normal", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-medium", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-semibold", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-bold", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-base/font-black", "fontSize": 16, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-thin", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-light", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-normal", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-medium", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-semibold", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-bold", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-lg/font-black", "fontSize": 18, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-thin", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-light", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-normal", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-medium", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-semibold", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-bold", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-xl/font-black", "fontSize": 20, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-thin", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-light", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-normal", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-medium", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-semibold", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-bold", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-2xl/font-black", "fontSize": 24, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-thin", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-light", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-normal", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-medium", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-semibold", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-bold", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-3xl/font-black", "fontSize": 30, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-thin", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-light", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-normal", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-medium", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-semibold", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-bold", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-4xl/font-black", "fontSize": 36, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-thin", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-light", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-normal", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-medium", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-semibold", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-bold", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-5xl/font-black", "fontSize": 48, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-thin", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-light", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-normal", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-medium", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-semibold", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-bold", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-6xl/font-black", "fontSize": 60, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-thin", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-light", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-normal", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-medium", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-semibold", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-bold", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-7xl/font-black", "fontSize": 72, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-thin", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-light", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-normal", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-medium", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-semibold", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-bold", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-8xl/font-black", "fontSize": 96, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-thin", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 100, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-light", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 300, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-normal", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 400, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-medium", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 500, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-semibold", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 600, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-bold", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 700, "lineHeight": 1.5, "letterSpacing": 0}, {"name": "text-9xl/font-black", "fontSize": 128, "fontFamily": "IBM Plex Sans JP", "fontWeight": 900, "lineHeight": 1.5, "letterSpacing": 0}], "effects": [{"name": "shadow-xs", "x": 0, "y": 1, "blur": 1, "spread": 0, "color": "rgba(29,41,61,0.02)"}, {"name": "shadow", "x": 0, "y": 1, "blur": 3, "spread": 0, "color": "rgba(0,0,0,0.1)"}, {"name": "shadow-md", "x": 0, "y": 4, "blur": 6, "spread": -1, "color": "rgba(0,0,0,0.1)"}, {"name": "shadow-lg", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(0,0,0,0.1)"}, {"name": "shadow-xl", "x": 0, "y": 20, "blur": 25, "spread": -5, "color": "rgba(0,0,0,0.1)"}, {"name": "shadow-2xl", "x": 0, "y": 25, "blur": 50, "spread": -12, "color": "rgba(0,0,0,0.25)"}, {"name": "shadow-blue", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(28,100,242,0.5)"}, {"name": "shadow-green", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(14,159,110,0.5)"}, {"name": "shadow-indigo", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(88,80,236,0.5)"}, {"name": "shadow-purple", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(126,58,242,0.5)"}, {"name": "shadow-pink", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(231,70,148,0.5)"}, {"name": "shadow-red", "x": 0, "y": 10, "blur": 15, "spread": -3, "color": "rgba(240,82,82,0.5)"}], "grids": [{"name": "12 columns / gap-16", "cols": 12, "gutter": 64, "margin": 0}, {"name": "12 columns / gap-8", "cols": 12, "gutter": 32, "margin": 0}, {"name": "12 columns / gap-4", "cols": 12, "gutter": 16, "margin": 0}, {"name": "8 columns / gap-8", "cols": 8, "gutter": 32, "margin": 0}, {"name": "6 columns / gap-8", "cols": 6, "gutter": 32, "margin": 0}, {"name": "4 columns / gap-8", "cols": 4, "gutter": 32, "margin": 0}, {"name": "3 columns / gap-4", "cols": 3, "gutter": 16, "margin": 0}, {"name": "2 columns / gap-4", "cols": 2, "gutter": 16, "margin": 0}, {"name": "1 column", "cols": 1, "gutter": 32, "margin": 0}],"icons":[{"name": "amazon", "cat": "Marcas"}, {"name": "apple", "cat": "Marcas"}, {"name": "discord", "cat": "Marcas"}, {"name": "dribbble", "cat": "Marcas"}, {"name": "facebook", "cat": "Marcas"}, {"name": "github", "cat": "Marcas"}, {"name": "google", "cat": "Marcas"}, {"name": "instagram", "cat": "Marcas"}, {"name": "linkedin", "cat": "Marcas"}, {"name": "microsoft", "cat": "Marcas"}, {"name": "reddit", "cat": "Marcas"}, {"name": "slack", "cat": "Marcas"}, {"name": "spotify", "cat": "Marcas"}, {"name": "stripe", "cat": "Marcas"}, {"name": "tiktok", "cat": "Marcas"}, {"name": "twitch", "cat": "Marcas"}, {"name": "twitter", "cat": "Marcas"}, {"name": "whatsapp", "cat": "Marcas"}, {"name": "x", "cat": "Marcas"}, {"name": "youtube", "cat": "Marcas"}, {"name": "academic-cap", "cat": "Educa\u00e7\u00e3o"}, {"name": "book-open", "cat": "Educa\u00e7\u00e3o"}, {"name": "book-marked", "cat": "Educa\u00e7\u00e3o"}, {"name": "bookmark", "cat": "Educa\u00e7\u00e3o"}, {"name": "calculator", "cat": "Educa\u00e7\u00e3o"}, {"name": "certificate", "cat": "Educa\u00e7\u00e3o"}, {"name": "graduation", "cat": "Educa\u00e7\u00e3o"}, {"name": "microscope", "cat": "Educa\u00e7\u00e3o"}, {"name": "presentation", "cat": "Educa\u00e7\u00e3o"}, {"name": "school", "cat": "Educa\u00e7\u00e3o"}, {"name": "adjustments", "cat": "Interface"}, {"name": "archive", "cat": "Interface"}, {"name": "badge-check", "cat": "Interface"}, {"name": "ban", "cat": "Interface"}, {"name": "bell", "cat": "Interface"}, {"name": "bell-slash", "cat": "Interface"}, {"name": "bolt", "cat": "Interface"}, {"name": "bug", "cat": "Interface"}, {"name": "chart-bar", "cat": "Interface"}, {"name": "chart-line", "cat": "Interface"}, {"name": "chart-pie", "cat": "Interface"}, {"name": "check", "cat": "Interface"}, {"name": "check-circle", "cat": "Interface"}, {"name": "chip", "cat": "Interface"}, {"name": "clipboard", "cat": "Interface"}, {"name": "clipboard-check", "cat": "Interface"}, {"name": "clipboard-copy", "cat": "Interface"}, {"name": "clipboard-list", "cat": "Interface"}, {"name": "clock", "cat": "Interface"}, {"name": "cog", "cat": "Interface"}, {"name": "cog-6-tooth", "cat": "Interface"}, {"name": "command", "cat": "Interface"}, {"name": "credit-card", "cat": "Interface"}, {"name": "cursor-click", "cat": "Interface"}, {"name": "database", "cat": "Interface"}, {"name": "desktop-computer", "cat": "Interface"}, {"name": "dots-horizontal", "cat": "Interface"}, {"name": "dots-vertical", "cat": "Interface"}, {"name": "duplicate", "cat": "Interface"}, {"name": "emoji-happy", "cat": "Interface"}, {"name": "emoji-sad", "cat": "Interface"}, {"name": "exclamation", "cat": "Interface"}, {"name": "exclamation-circle", "cat": "Interface"}, {"name": "eye", "cat": "Interface"}, {"name": "eye-off", "cat": "Interface"}, {"name": "filter", "cat": "Interface"}, {"name": "fire", "cat": "Interface"}, {"name": "flag", "cat": "Interface"}, {"name": "funnel", "cat": "Interface"}, {"name": "gift", "cat": "Interface"}, {"name": "globe", "cat": "Interface"}, {"name": "hand", "cat": "Interface"}, {"name": "hashtag", "cat": "Interface"}, {"name": "heart", "cat": "Interface"}, {"name": "home", "cat": "Interface"}, {"name": "inbox", "cat": "Interface"}, {"name": "information-circle", "cat": "Interface"}, {"name": "key", "cat": "Interface"}, {"name": "library", "cat": "Interface"}, {"name": "light-bulb", "cat": "Interface"}, {"name": "lightning-bolt", "cat": "Interface"}, {"name": "link", "cat": "Interface"}, {"name": "lock", "cat": "Interface"}, {"name": "lock-open", "cat": "Interface"}, {"name": "mail", "cat": "Interface"}, {"name": "mail-open", "cat": "Interface"}, {"name": "megaphone", "cat": "Interface"}, {"name": "menu", "cat": "Interface"}, {"name": "menu-alt", "cat": "Interface"}, {"name": "minus", "cat": "Interface"}, {"name": "minus-circle", "cat": "Interface"}, {"name": "moon", "cat": "Interface"}, {"name": "newspaper", "cat": "Interface"}, {"name": "paper-clip", "cat": "Interface"}, {"name": "pencil", "cat": "Interface"}, {"name": "pencil-alt", "cat": "Interface"}, {"name": "phone", "cat": "Interface"}, {"name": "pin", "cat": "Interface"}, {"name": "plus", "cat": "Interface"}, {"name": "plus-circle", "cat": "Interface"}, {"name": "printer", "cat": "Interface"}, {"name": "puzzle", "cat": "Interface"}, {"name": "question-mark-circle", "cat": "Interface"}, {"name": "refresh", "cat": "Interface"}, {"name": "rss", "cat": "Interface"}, {"name": "save", "cat": "Interface"}, {"name": "scale", "cat": "Interface"}, {"name": "search", "cat": "Interface"}, {"name": "selector", "cat": "Interface"}, {"name": "server", "cat": "Interface"}, {"name": "share", "cat": "Interface"}, {"name": "shield", "cat": "Interface"}, {"name": "shield-check", "cat": "Interface"}, {"name": "shield-exclamation", "cat": "Interface"}, {"name": "signal", "cat": "Interface"}, {"name": "sort-ascending", "cat": "Interface"}, {"name": "sort-descending", "cat": "Interface"}, {"name": "sparkles", "cat": "Interface"}, {"name": "speakerphone", "cat": "Interface"}, {"name": "star", "cat": "Interface"}, {"name": "status-offline", "cat": "Interface"}, {"name": "status-online", "cat": "Interface"}, {"name": "sun", "cat": "Interface"}, {"name": "support", "cat": "Interface"}, {"name": "switch-horizontal", "cat": "Interface"}, {"name": "switch-vertical", "cat": "Interface"}, {"name": "table", "cat": "Interface"}, {"name": "tag", "cat": "Interface"}, {"name": "template", "cat": "Interface"}, {"name": "terminal", "cat": "Interface"}, {"name": "thumb-down", "cat": "Interface"}, {"name": "thumb-up", "cat": "Interface"}, {"name": "ticket", "cat": "Interface"}, {"name": "trash", "cat": "Interface"}, {"name": "trending-down", "cat": "Interface"}, {"name": "trending-up", "cat": "Interface"}, {"name": "variable", "cat": "Interface"}, {"name": "view-boards", "cat": "Interface"}, {"name": "view-list", "cat": "Interface"}, {"name": "wallet", "cat": "Interface"}, {"name": "wifi", "cat": "Interface"}, {"name": "x-circle", "cat": "Interface"}, {"name": "zoom-in", "cat": "Interface"}, {"name": "zoom-out", "cat": "Interface"}, {"name": "arrow-circle-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-circle-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-circle-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-circle-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-narrow-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-narrow-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-narrow-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-narrow-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-sm-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-sm-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-sm-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-sm-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrow-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "arrows-expand", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-double-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-double-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-double-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-double-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-down", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-left", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-right", "cat": "Navega\u00e7\u00e3o"}, {"name": "chevron-up", "cat": "Navega\u00e7\u00e3o"}, {"name": "external-link", "cat": "Navega\u00e7\u00e3o"}, {"name": "location-marker", "cat": "Navega\u00e7\u00e3o"}, {"name": "logout", "cat": "Navega\u00e7\u00e3o"}, {"name": "login", "cat": "Navega\u00e7\u00e3o"}, {"name": "map", "cat": "Navega\u00e7\u00e3o"}, {"name": "navigation", "cat": "Navega\u00e7\u00e3o"}, {"name": "reply", "cat": "Navega\u00e7\u00e3o"}, {"name": "collection", "cat": "Arquivos"}, {"name": "document", "cat": "Arquivos"}, {"name": "document-add", "cat": "Arquivos"}, {"name": "document-download", "cat": "Arquivos"}, {"name": "document-duplicate", "cat": "Arquivos"}, {"name": "document-remove", "cat": "Arquivos"}, {"name": "document-report", "cat": "Arquivos"}, {"name": "document-search", "cat": "Arquivos"}, {"name": "document-text", "cat": "Arquivos"}, {"name": "download", "cat": "Arquivos"}, {"name": "folder", "cat": "Arquivos"}, {"name": "folder-add", "cat": "Arquivos"}, {"name": "folder-download", "cat": "Arquivos"}, {"name": "folder-open", "cat": "Arquivos"}, {"name": "folder-remove", "cat": "Arquivos"}, {"name": "paper-airplane", "cat": "Arquivos"}, {"name": "upload", "cat": "Arquivos"}, {"name": "camera", "cat": "M\u00eddia"}, {"name": "film", "cat": "M\u00eddia"}, {"name": "microphone", "cat": "M\u00eddia"}, {"name": "music-note", "cat": "M\u00eddia"}, {"name": "pause", "cat": "M\u00eddia"}, {"name": "photograph", "cat": "M\u00eddia"}, {"name": "play", "cat": "M\u00eddia"}, {"name": "rewind", "cat": "M\u00eddia"}, {"name": "fast-forward", "cat": "M\u00eddia"}, {"name": "stop", "cat": "M\u00eddia"}, {"name": "video-camera", "cat": "M\u00eddia"}, {"name": "volume-off", "cat": "M\u00eddia"}, {"name": "volume-up", "cat": "M\u00eddia"}, {"name": "identification", "cat": "Pessoas"}, {"name": "user", "cat": "Pessoas"}, {"name": "user-add", "cat": "Pessoas"}, {"name": "user-circle", "cat": "Pessoas"}, {"name": "user-group", "cat": "Pessoas"}, {"name": "user-remove", "cat": "Pessoas"}, {"name": "users", "cat": "Pessoas"}, {"name": "circle", "cat": "Formas"}, {"name": "cube", "cat": "Formas"}, {"name": "cube-transparent", "cat": "Formas"}, {"name": "dots-circle-horizontal", "cat": "Formas"}, {"name": "minus-sm", "cat": "Formas"}, {"name": "plus-sm", "cat": "Formas"}, {"name": "square", "cat": "Formas"}, {"name": "view-grid", "cat": "Formas"}, {"name": "view-grid-add", "cat": "Formas"}, {"name": "x", "cat": "Formas"}, {"name": "cloud", "cat": "Clima"}, {"name": "cloud-download", "cat": "Clima"}, {"name": "cloud-upload", "cat": "Clima"}, {"name": "lightning", "cat": "Clima"}, {"name": "rain", "cat": "Clima"}, {"name": "snow", "cat": "Clima"}, {"name": "sun-alt", "cat": "Clima"}, {"name": "wind", "cat": "Clima"}, {"name": "car", "cat": "Transporte"}, {"name": "truck", "cat": "Transporte"}, {"name": "bicycle", "cat": "Transporte"}, {"name": "plane", "cat": "Transporte"}, {"name": "ship", "cat": "Transporte"}, {"name": "train", "cat": "Transporte"}, {"name": "heart-alt", "cat": "Sa\u00fade"}, {"name": "beaker", "cat": "Sa\u00fade"}, {"name": "thermometer", "cat": "Sa\u00fade"}, {"name": "hand-alt", "cat": "Sa\u00fade"}, {"name": "eye-alt", "cat": "Sa\u00fade"}, {"name": "banknotes", "cat": "Finan\u00e7as"}, {"name": "currency-dollar", "cat": "Finan\u00e7as"}, {"name": "currency-euro", "cat": "Finan\u00e7as"}, {"name": "currency-pound", "cat": "Finan\u00e7as"}, {"name": "currency-yen", "cat": "Finan\u00e7as"}, {"name": "receipt-refund", "cat": "Finan\u00e7as"}, {"name": "receipt-tax", "cat": "Finan\u00e7as"}, {"name": "code", "cat": "Desenvolvimento"}, {"name": "code-bracket", "cat": "Desenvolvimento"}, {"name": "code-bracket-square", "cat": "Desenvolvimento"}, {"name": "cpu-chip", "cat": "Desenvolvimento"}, {"name": "command-line", "cat": "Desenvolvimento"}, {"name": "wrench", "cat": "Desenvolvimento"}, {"name": "wrench-screwdriver", "cat": "Desenvolvimento"}, {"name": "circle-stack", "cat": "Desenvolvimento"}, {"name": "at-symbol", "cat": "Comunica\u00e7\u00e3o"}, {"name": "chat", "cat": "Comunica\u00e7\u00e3o"}, {"name": "chat-alt", "cat": "Comunica\u00e7\u00e3o"}, {"name": "chat-alt-2", "cat": "Comunica\u00e7\u00e3o"}, {"name": "annotation", "cat": "Comunica\u00e7\u00e3o"}, {"name": "inbox-in", "cat": "Comunica\u00e7\u00e3o"}, {"name": "phone-incoming", "cat": "Comunica\u00e7\u00e3o"}, {"name": "phone-outgoing", "cat": "Comunica\u00e7\u00e3o"}, {"name": "phone-missed-call", "cat": "Comunica\u00e7\u00e3o"}, {"name": "color-swatch", "cat": "Arte"}, {"name": "paint-brush", "cat": "Arte"}, {"name": "scissors", "cat": "Arte"}, {"name": "sparkle", "cat": "Arte"}, {"name": "swatch", "cat": "Arte"}, {"name": "backspace", "cat": "Outros"}, {"name": "briefcase", "cat": "Outros"}, {"name": "calendar", "cat": "Outros"}, {"name": "cash", "cat": "Outros"}, {"name": "chip-alt", "cat": "Outros"}, {"name": "clock-alt", "cat": "Outros"}, {"name": "cloud-alt", "cat": "Outros"}, {"name": "cog-alt", "cat": "Outros"}, {"name": "compass", "cat": "Outros"}, {"name": "device-mobile", "cat": "Outros"}, {"name": "device-tablet", "cat": "Outros"}, {"name": "fingerprint", "cat": "Outros"}, {"name": "gift-alt", "cat": "Outros"}, {"name": "globe-alt", "cat": "Outros"}, {"name": "home-alt", "cat": "Outros"}, {"name": "inbox-alt", "cat": "Outros"}, {"name": "keyboard", "cat": "Outros"}, {"name": "moon-alt", "cat": "Outros"}, {"name": "office-building", "cat": "Outros"}, {"name": "paper-clip-alt", "cat": "Outros"}, {"name": "phone-alt", "cat": "Outros"}, {"name": "scissors-alt", "cat": "Outros"}, {"name": "shopping-bag", "cat": "Outros"}, {"name": "shopping-cart", "cat": "Outros"}, {"name": "speakerphone-alt", "cat": "Outros"}, {"name": "star-alt", "cat": "Outros"}, {"name": "trash-alt", "cat": "Outros"}, {"name": "trending-up-alt", "cat": "Outros"}],"avatarUsers":[{"name": "Jese Leos", "initials": "JL", "color": "#6366f1"}, {"name": "Bonnie Green", "initials": "BG", "color": "#10b981"}, {"name": "Roberta Casas", "initials": "RC", "color": "#f59e0b"}, {"name": "Neil Sims", "initials": "NS", "color": "#ef4444"}, {"name": "Thomas Lean", "initials": "TL", "color": "#3b82f6"}, {"name": "Micheal Gough", "initials": "MG", "color": "#8b5cf6"}, {"name": "Helene Engels", "initials": "HE", "color": "#ec4899"}, {"name": "Lana Byrd", "initials": "LB", "color": "#14b8a6"}, {"name": "Leslie Livingston", "initials": "LL", "color": "#f97316"}, {"name": "Karen Nelson", "initials": "KN", "color": "#06b6d4"}, {"name": "Robert Brown", "initials": "RB", "color": "#84cc16"}, {"name": "Joseph McFall", "initials": "JM", "color": "#a3e635"}],"avatarSizes":[{"name": "2xl", "px": 64}, {"name": "xl", "px": 56}, {"name": "lg", "px": 44}, {"name": "base", "px": 32}, {"name": "sm", "px": 24}, {"name": "xs", "px": 20}]};
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f5f8;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-overlay: rgba(255,255,255,0.9);
+  --text-1: #0f0f14;
+  --text-2: #4a4a62;
+  --text-3: #9898b0;
+  --border: rgba(0,0,0,0.07);
+  --border-strong: rgba(0,0,0,0.14);
+  --accent: #155DFC;
+  --accent-soft: rgba(21,93,252,0.10);
+  --accent-text: #1447E6;
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 18px;
+  --sidebar-w: 228px;
+  --topbar-h: 52px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d0d12;
+    --surface: #17171f;
+    --surface-raised: #1f1f2a;
+    --surface-overlay: rgba(23,23,31,0.92);
+    --text-1: #f0f0f5;
+    --text-2: #9898b0;
+    --text-3: #55556a;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.13);
+    --accent: #4f85ff;
+    --accent-soft: rgba(79,133,255,0.12);
+    --accent-text: #7aa5ff;
+  }
+}
+body { font-family: 'IBM Plex Sans JP', -apple-system, sans-serif; font-size: 14px; color: var(--text-1); background: var(--bg); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* ── SIDEBAR ── */
+.sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: var(--sidebar-w); background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 50; overflow-y: auto; }
+.logo { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; letter-spacing: -0.5px; }
+.logo-name { font-size: 13px; font-weight: 600; color: var(--text-1); }
+.logo-sub { font-size: 10px; color: var(--text-3); margin-top: 1px; }
+.nav { padding: 10px 8px; flex: 1; }
+.nav-group { margin-bottom: 18px; }
+.nav-label { font-size: 10px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 8px; margin-bottom: 3px; display: block; }
+.nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: var(--r-md); font-size: 12.5px; color: var(--text-2); cursor: pointer; transition: all 0.1s; margin-bottom: 1px; border: none; background: none; width: 100%; text-align: left; }
+.nav-item:hover { background: var(--bg); color: var(--text-1); }
+.nav-item.active { background: var(--accent-soft); color: var(--accent-text); font-weight: 500; }
+.nav-icon { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.45; }
+.nav-item.active .nav-icon { opacity: 1; color: var(--accent); }
+.nav-badge { margin-left: auto; font-size: 10px; background: var(--bg); color: var(--text-3); padding: 1px 6px; border-radius: 20px; border: 1px solid var(--border); }
+.nav-item.active .nav-badge { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; }
+.sidebar-footer { padding: 10px 14px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; transition: background 0.3s; }
+.status-dot.connected { background: #22c55e; }
+.status-dot.error { background: #ef4444; }
+.status-dot.fallback { background: #f59e0b; }
+.status-label { font-size: 11px; color: var(--text-3); }
+.banner { margin: 8px 8px 0; padding: 8px 10px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--r-md); font-size: 11px; color: #b45309; line-height: 1.5; display: none; }
+.banner.show { display: block; }
+.banner strong { display: block; font-weight: 600; margin-bottom: 2px; }
+
+/* ── MAIN ── */
+.main { margin-left: var(--sidebar-w); display: flex; flex-direction: column; height: 100vh; }
+.topbar { height: var(--topbar-h); flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: var(--surface-overlay); border-bottom: 1px solid var(--border); flex-shrink: 0; backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 40; }
+.breadcrumb { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+.breadcrumb b { color: var(--text-1); font-weight: 500; }
+.search-wrap { position: relative; }
+.search-input { width: 200px; padding: 6px 10px 6px 30px; border-radius: 20px; border: 1px solid var(--border-strong); background: var(--bg); font-size: 12px; color: var(--text-1); outline: none; transition: width 0.2s, border-color 0.15s; font-family: inherit; }
+.search-input:focus { width: 280px; border-color: var(--accent); }
+.search-input::placeholder { color: var(--text-3); }
+.search-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text-3); pointer-events: none; }
+.topbar-right { display: flex; align-items: center; gap: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 20px; font-size: 11.5px; font-weight: 500; cursor: pointer; border: 1px solid var(--border-strong); background: transparent; color: var(--text-2); transition: all 0.1s; font-family: inherit; white-space: nowrap; }
+.btn:hover { background: var(--surface-raised); color: var(--text-1); }
+.btn-accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-accent:hover { opacity: 0.88; color: #fff; }
+.btn-sm { padding: 4px 9px; font-size: 11px; }
+
+/* ── CONTENT ── */
+.content { flex: 1; overflow-y: auto; padding: 28px 32px 60px; }
+.page-hero { margin-bottom: 28px; }
+.page-eyebrow { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); color: var(--accent-text); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+.page-title { font-size: 24px; font-weight: 600; color: var(--text-1); margin-bottom: 7px; letter-spacing: -0.3px; }
+.page-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; max-width: 540px; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 32px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+.section-title { font-size: 10.5px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; }
+.section-count { font-size: 11px; color: var(--text-3); background: var(--bg); padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); }
+
+/* ── OVERVIEW ── */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.overview-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; cursor: pointer; transition: all 0.15s; }
+.overview-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.overview-icon { width: 36px; height: 36px; border-radius: var(--r-md); background: var(--accent-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--accent); }
+.overview-label { font-size: 13px; font-weight: 600; color: var(--text-1); margin-bottom: 3px; }
+.overview-count { font-size: 11px; color: var(--text-3); }
+.overview-preview { display: flex; gap: 3px; margin-top: 10px; height: 6px; }
+.overview-swatch { flex: 1; border-radius: 3px; }
+.overview-source { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+.overview-source-icon { width: 40px; height: 40px; border-radius: var(--r-md); background: #1e1e2e; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.overview-source-info { flex: 1; }
+.overview-source-title { font-size: 13px; font-weight: 600; color: var(--text-1); margin-bottom: 3px; }
+.overview-source-desc { font-size: 11px; color: var(--text-3); line-height: 1.5; }
+
+/* ── FILTERS ── */
+.filter-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-chip { padding: 4px 11px; border-radius: 20px; font-size: 11.5px; cursor: pointer; border: 1px solid var(--border-strong); background: transparent; color: var(--text-2); transition: all 0.1s; font-family: inherit; font-weight: 400; }
+.filter-chip:hover { background: var(--surface-raised); color: var(--text-1); }
+.filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 500; }
+
+/* ── COLORS ── */
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.color-card { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; transition: all 0.15s; cursor: pointer; background: var(--surface); }
+.color-card:hover { border-color: var(--border-strong); transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.07); }
+.color-swatch { height: 64px; position: relative; }
+.copy-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: flex-end; padding: 5px; opacity: 0; transition: opacity 0.15s; }
+.copy-overlay span { background: rgba(0,0,0,0.55); color: #fff; font-size: 9.5px; padding: 2px 6px; border-radius: 4px; backdrop-filter: blur(4px); }
+.color-swatch:hover .copy-overlay { opacity: 1; }
+.color-meta { padding: 8px 9px; }
+.color-name { font-size: 10.5px; font-weight: 500; color: var(--text-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
+.color-hex { font-size: 10px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; }
+.color-actions { display: flex; gap: 3px; margin-top: 5px; }
+.copy-chip { flex: 1; font-size: 9.5px; padding: 3px 4px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg); color: var(--text-3); cursor: pointer; font-family: 'IBM Plex Mono', monospace; text-align: center; transition: all 0.1s; }
+.copy-chip:hover { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent); }
+
+/* ── TYPOGRAPHY ── */
+.type-size-group { margin-bottom: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.type-size-header { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
+.type-size-label { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; }
+.type-size-px { font-size: 12px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; }
+.type-weight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; }
+.type-weight-card { padding: 12px 16px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.1s; cursor: default; }
+.type-weight-card:hover { background: var(--bg); }
+.type-weight-name { font-size: 10px; font-weight: 500; color: var(--text-3); margin-bottom: 6px; font-family: 'IBM Plex Mono', monospace; }
+.type-preview { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--text-1); font-family: 'IBM Plex Sans JP', sans-serif; line-height: 1.4; }
+.type-meta { font-size: 10px; color: var(--text-3); margin-top: 5px; font-family: 'IBM Plex Mono', monospace; }
+
+/* ── LETTER SPACING ── */
+.ls-list { display: flex; flex-direction: column; gap: 1px; }
+.ls-row { display: grid; grid-template-columns: 200px 1fr 80px; align-items: center; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+.ls-token { font-size: 11px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; }
+.ls-preview { font-size: 14px; color: var(--text-1); font-family: 'IBM Plex Sans JP', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ls-val { font-size: 11px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; text-align: right; }
+
+/* ── SPACING ── */
+.space-list { display: flex; flex-direction: column; }
+.space-row { display: grid; grid-template-columns: 130px 1fr 90px; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.space-token { font-size: 11px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; }
+.space-bar-track { height: 8px; background: var(--bg); border-radius: 4px; position: relative; overflow: hidden; }
+.space-bar { height: 100%; border-radius: 4px; background: var(--accent); opacity: 0.6; transition: width 0.3s; }
+.space-vals { font-size: 11px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; text-align: right; line-height: 1.6; }
+
+/* ── RADIUS ── */
+.radius-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.radius-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px 16px; text-align: center; transition: all 0.15s; }
+.radius-card:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+.radius-demo { width: 60px; height: 60px; background: var(--accent-soft); border: 1.5px solid var(--accent); margin: 0 auto 12px; }
+.radius-name { font-size: 12px; font-weight: 500; color: var(--text-1); margin-bottom: 3px; }
+.radius-val { font-size: 11px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; }
+
+/* ── SHADOWS ── */
+.shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.shadow-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; }
+.shadow-demo-wrap { display: flex; align-items: center; justify-content: center; height: 80px; margin-bottom: 14px; }
+.shadow-demo { width: 52px; height: 52px; background: var(--surface-raised); border-radius: var(--r-md); }
+.shadow-name { font-size: 12px; font-weight: 600; color: var(--text-1); margin-bottom: 5px; }
+.shadow-code { font-size: 10px; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; line-height: 1.6; background: var(--bg); padding: 7px 9px; border-radius: var(--r-sm); cursor: pointer; transition: background 0.1s; word-break: break-all; }
+.shadow-code:hover { background: var(--accent-soft); color: var(--accent-text); }
+
+/* ── GRIDS ── */
+.grid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.grid-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 16px; transition: all 0.15s; }
+.grid-card:hover { border-color: var(--border-strong); }
+.grid-preview { height: 40px; display: flex; gap: 2px; margin-bottom: 12px; border-radius: var(--r-sm); overflow: hidden; }
+.grid-col { flex: 1; background: var(--accent-soft); border-left: 1px solid rgba(21,93,252,0.15); }
+.grid-col:first-child { border-left: none; }
+.grid-name { font-size: 12.5px; font-weight: 600; color: var(--text-1); margin-bottom: 8px; }
+.grid-specs { display: flex; flex-wrap: wrap; gap: 5px; }
+.grid-spec { font-size: 10.5px; color: var(--text-2); font-family: 'IBM Plex Mono', monospace; background: var(--bg); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); }
+
+/* ── TOKEN SEARCH RESULTS ── */
+.search-results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 20px; }
+.search-result-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+.search-result-row:last-child { border-bottom: none; }
+.search-result-type { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--accent-soft); color: var(--accent-text); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; }
+.search-result-name { color: var(--text-1); font-family: 'IBM Plex Mono', monospace; }
+.search-result-val { margin-left: auto; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+
+/* ── MISC ── */
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 4rem; min-height: 300px; }
+.spinner { width: 22px; height: 22px; border: 2px solid var(--border-strong); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-label { font-size: 13px; color: var(--text-2); }
+.toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--text-1); color: var(--bg); padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; opacity: 0; transform: translateY(8px); transition: all 0.2s; pointer-events: none; z-index: 999; max-width: 320px; }
+.toast.show { opacity: 1; transform: translateY(0); }
+.empty-state { text-align: center; padding: 3rem; color: var(--text-3); font-size: 13px; }
+/* ─── ICONS ─────────────────────────────────────────────────────────────── */
+.icon-search-row { margin-bottom: 12px; }
+.icon-search-input { width: 100%; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-1); font-size: 13px; font-family: inherit; outline: none; }
+.icon-search-input:focus { border-color: var(--accent); }
+.icon-count { font-size: 12px; color: var(--text-3); margin-bottom: 12px; }
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; margin-bottom: 32px; }
+.icon-card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all .15s; }
+.icon-card:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+.icon-preview { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.icon-name { font-size: 10px; color: var(--text-3); text-align: center; word-break: break-all; line-height: 1.3; max-width: 80px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.icon-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.icon-cat-chip { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all .15s; }
+.icon-cat-chip:hover { border-color: var(--accent); }
+.icon-cat-name { font-size: 12px; color: var(--text-1); font-weight: 500; }
+.icon-cat-count { font-size: 11px; color: var(--text-3); background: var(--bg); padding: 2px 6px; border-radius: 10px; }
+/* ─── AVATARS ─────────────────────────────────────────────────────────────── */
+.avatar-size-grid { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; }
+.avatar-size-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.avatar-size-label { font-size: 12px; font-weight: 600; color: var(--text-1); }
+.avatar-size-px { font-size: 11px; color: var(--text-3); }
+.avatar-circle { border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 12px; position: relative; flex-shrink: 0; }
+.avatar-lg { width: 44px; height: 44px; font-size: 16px; }
+.avatar-status { position: absolute; bottom: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--surface); }
+.avatar-online { background: #22c55e; }
+.avatar-remove-btn { position: absolute; top: -2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: #ef4444; color: white; font-size: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.avatar-type-grid { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 8px; }
+.avatar-type-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.avatar-type-wrap { position: relative; }
+.avatar-user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+.avatar-user-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all .15s; }
+.avatar-user-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.avatar-user-name { font-size: 11px; color: var(--text-1); font-weight: 500; text-align: center; }
+.avatar-user-sub { font-size: 10px; color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-mark">BB</div>
+    <div>
+      <div class="logo-name">BlackBirdDS</div>
+      <div class="logo-sub">Design System · Foundations</div>
+    </div>
+  </div>
+  <div class="banner" id="figma-banner">
+    <strong>⚠ Figma não conectado</strong>
+    Exibindo dados de demonstração.
+  </div>
+  <nav class="nav">
+    <div class="nav-group">
+      <span class="nav-label">Overview</span>
+      <button class="nav-item active" data-section="overview" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.3"/></svg>
+        Visão Geral
+        <span class="nav-badge" id="badge-overview">—</span>
+      </button>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Foundations</span>
+      <button class="nav-item" data-section="colors" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 2.5C8 2.5 4.5 5.5 4.5 8a3.5 3.5 0 007 0c0-2.5-3.5-5.5-3.5-5.5z" fill="currentColor" opacity="0.2"/></svg>
+        Cores
+        <span class="nav-badge" id="badge-colors">—</span>
+      </button>
+      <button class="nav-item" data-section="typography" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M8 4v8M5.5 12h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Tipografia
+        <span class="nav-badge" id="badge-typography">—</span>
+      </button>
+      <button class="nav-item" data-section="spacing" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M4 3v10M12 3v10M4 8h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Espaçamentos
+        <span class="nav-badge" id="badge-spacing">—</span>
+      </button>
+      <button class="nav-item" data-section="letterSpacing" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M5 5l-3 3 3 3M11 5l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Letter Spacing
+        <span class="nav-badge" id="badge-letterSpacing">—</span>
+      </button>
+      <button class="nav-item" data-section="radius" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="2.5" y="2.5" width="11" height="11" rx="3.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        Border Radius
+        <span class="nav-badge" id="badge-radius">—</span>
+      </button>
+      <button class="nav-item" data-section="shadows" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3" opacity="0.3"/></svg>
+        Sombras
+        <span class="nav-badge" id="badge-shadows">—</span>
+      </button>
+      <button class="nav-item" data-section="grids" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M2 5h12M2 9h12M5 2v12M11 2v12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Grids & Layout
+        <span class="nav-badge" id="badge-grids">—</span>
+      </button>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Componentes</span>
+      <button class="nav-item" data-section="icons" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><circle cx="11.5" cy="11.5" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
+        Ícones
+        <span class="nav-badge" id="badge-icons">—</span>
+      </button>
+      <button class="nav-item" data-section="avatars" onclick="nav(this)">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M2 13c0-2.5 2.7-4 6-4s6 1.5 6 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Avatares
+        <span class="nav-badge" id="badge-avatars">—</span>
+      </button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="status-dot" id="status-dot"></div>
+    <span class="status-label" id="status-label">Conectando...</span>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="breadcrumb">BlackBirdDS / <b id="bc">Visão Geral</b></div>
+    <div class="search-wrap">
+      <svg class="search-icon" width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M9 9l2.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <input class="search-input" id="search" type="text" placeholder="Buscar token..." oninput="onSearch(this.value)">
+    </div>
+    <div class="topbar-right">
+      <button class="btn" onclick="window.open('https://www.figma.com/design/80AeIURSIPxOKoZOXj7LAY/BlackBirdDS')">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="4" rx="0.8" fill="#FF7262"/><rect x="7" y="1" width="4" height="4" rx="0.8" fill="#1ABCFE"/><rect x="1" y="7" width="4" height="4" rx="0.8" fill="#0ACF83"/><circle cx="9" cy="9" r="2" fill="#A259FF"/></svg>
+        Figma
+      </button>
+      <button class="btn btn-sm" onclick="exportCSS()">Export CSS</button>
+      <button class="btn btn-sm" onclick="exportTokens()">Export JSON</button>
+      <button class="btn btn-accent btn-sm" onclick="reload()">↺ Sync</button>
+    </div>
+  </div>
+  <div class="content" id="content">
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <div class="loading-label" id="loading-msg">Carregando tokens...</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const FILE_KEY = '80AeIURSIPxOKoZOXj7LAY';
+let DS = null;
+let currentSection = 'overview';
+let activeColorGroup = 'all';
+let searchQuery = '';
+
+const META = {
+  overview:      { label: 'Visão Geral',    desc: 'Resumo de todos os tokens de foundation do BlackBirdDS.' },
+  colors:        { label: 'Cores',           desc: 'Paleta de cores primitivas — Brand, Neutral e escala semântica. Clique no hex para copiar.' },
+  typography:    { label: 'Tipografia',      desc: 'Estilos de texto com IBM Plex Sans JP — 13 tamanhos × 7 pesos.' },
+  spacing:       { label: 'Espaçamentos',    desc: 'Escala de spacing baseada em múltiplos de 4px (rem base = 16px).' },
+  letterSpacing: { label: 'Letter Spacing',  desc: 'Escala de tracking — tighter, tight, normal, wide, wider, widest.' },
+  radius:        { label: 'Border Radius',   desc: 'Valores de border-radius usados nos componentes do design system.' },
+  shadows:       { label: 'Sombras',         desc: 'Elevações e box-shadows. Clique no código para copiar o CSS.' },
+  grids:         { label: 'Grids & Layout',  desc: 'Sistemas de grid de 1 a 12 colunas com variações de gap.' },
+  icons:         { label: 'Ícones',           desc: 'Biblioteca de ícones do BlackBirdDS — clique para copiar o nome.' },
+  avatars:       { label: 'Avatares',         desc: 'Componente de avatar com tamanhos, status e exemplos de usuários.' },
+};
+
+function toast(msg, duration=2200) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), duration);
+}
+
+function setStatus(state) {
+  const dot = document.getElementById('status-dot');
+  const lbl = document.getElementById('status-label');
+  dot.className = 'status-dot ' + state;
+  const labels = { connected: 'Figma conectado', fallback: 'Dados demo', error: 'Cache local', loading: 'Conectando...' };
+  lbl.textContent = labels[state] || 'Conectando...';
+  const banner = document.getElementById('figma-banner');
+  if (banner) banner.classList.toggle('show', state === 'fallback');
+}
+
+function rgbToHex(r,g,b) {
+  return '#' + [r,g,b].map(v => Math.round(v*255).toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+function hexToHsl(hex) {
+  let r=parseInt(hex.slice(1,3),16)/255, g=parseInt(hex.slice(3,5),16)/255, b=parseInt(hex.slice(5,7),16)/255;
+  const max=Math.max(r,g,b), min=Math.min(r,g,b); let h,s,l=(max+min)/2;
+  if(max===min) { h=s=0; } else {
+    const d=max-min; s=l>0.5?d/(2-max-min):d/(max+min);
+    h=max===r?(g-b)/d+(g<b?6:0):max===g?(b-r)/d+2:(r-g)/d+4; h/=6;
+  }
+  return `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+}
+
+function luminance(hex) {
+  const r=parseInt(hex.slice(1,3),16)/255, g=parseInt(hex.slice(3,5),16)/255, b=parseInt(hex.slice(5,7),16)/255;
+  return 0.2126*r+0.7152*g+0.0722*b;
+}
+
+function pxToRem(px) { return `${(px/16).toFixed(px%16===0?0:2)}rem`; }
+
+function toCSSVarName(name) {
+  return '--' + name.toLowerCase().replace(/[\/\s]+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+async function loadFromFigma() {
+  document.getElementById('loading-msg').textContent = 'Carregando tokens...';
+  if (window.FIGMA_DS) {
+    DS = window.FIGMA_DS;
+    setStatus('connected');
+    toast('✓ Tokens Figma carregados');
+    init();
+    return;
+  }
+  try {
+    document.getElementById('loading-msg').textContent = 'Conectando ao Figma MCP...';
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 4096,
+        mcp_servers: [{ type: 'url', url: 'https://mcp.figma.com/mcp', name: 'figma' }],
+        system: 'Extract design tokens from Figma and respond ONLY with minified JSON. No markdown.',
+        messages: [{ role: 'user', content: `Extract from file key "${FILE_KEY}" using get_local_variables and get_local_styles.` }]
+      })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    let json = '';
+    for (const b of data.content || []) { if (b.type==='text') json += b.text; }
+    const m = json.match(/\{[\s\S]*\}/);
+    if (!m) throw new Error('no json');
+    DS = JSON.parse(m[0]);
+    setStatus('connected');
+    toast('✓ Figma sincronizado');
+  } catch(e) {
+    console.info('Fallback:', e.message);
+    DS = fallbackDS();
+    setStatus('fallback');
+  }
+  init();
+}
+
+function init() {
+  updateBadges();
+  render();
+}
+
+function updateBadges() {
+  const counts = {
+    overview: Object.values(DS).reduce((a,v) => a+(Array.isArray(v)?v.length:0), 0),
+    colors: DS.colors?.length || 0,
+    typography: DS.textStyles?.length || 0,
+    spacing: DS.spacing?.length || 0,
+    letterSpacing: (DS.spacing||[]).filter(s=>s.name.toLowerCase().includes('letter')||s.name.toLowerCase().includes('tracking')).length,
+    radius: DS.radii?.length || 0,
+    shadows: DS.effects?.length || 0,
+    grids: DS.grids?.length || 0,
+    icons: DS.icons?.length || 0,
+    avatars: DS.avatarUsers?.length || 0,
+  };
+  for (const [k,v] of Object.entries(counts)) {
+    const el = document.getElementById('badge-'+k);
+    if (el) el.textContent = v;
+  }
+}
+
+function nav(el) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  currentSection = el.dataset.section;
+  document.getElementById('bc').textContent = META[currentSection].label;
+  document.getElementById('search').value = '';
+  searchQuery = '';
+  render();
+}
+
+function onSearch(q) {
+  searchQuery = q.trim().toLowerCase();
+  if (searchQuery) renderSearch(searchQuery);
+  else render();
+}
+
+function render() {
+  const content = document.getElementById('content');
+  const m = META[currentSection];
+  // Colors rebuilds its own hero (due to filter state); others get it from here
+  if (currentSection !== 'colors') {
+    content.innerHTML = `<div class="page-hero">
+      <div class="page-eyebrow">Foundation</div>
+      <div class="page-title">${m.label}</div>
+      <div class="page-desc">${m.desc}</div>
+    </div>`;
+  } else {
+    content.innerHTML = '';
+  }
+  const map = { overview: renderOverview, colors: renderColors, typography: renderTypography,
+    spacing: renderSpacing, letterSpacing: renderLetterSpacing,
+    radius: renderRadius, shadows: renderShadows, grids: renderGrids,
+    icons: renderIcons, avatars: renderAvatars };
+  (map[currentSection] || (()=>{}))(content);
+}
+
+/* ── ICONS ── */
+function renderIcons(container) {
+  const hero = document.createElement('div');
+  hero.className = 'page-hero';
+  hero.innerHTML = `<div class="page-eyebrow">Componentes</div><div class="page-title">${META.icons.label}</div><div class="page-desc">${META.icons.desc}</div>`;
+  container.appendChild(hero);
+
+  // Search + filter bar
+  const bar = document.createElement('div');
+  bar.style.cssText = 'display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:24px;';
+  bar.innerHTML = `
+    <input id="icon-search" type="text" placeholder="Buscar ícone..." style="flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg-2);color:var(--text-1);font-size:13px;outline:none;" oninput="filterIcons()">
+    <div class="icon-cat-grid" id="icon-cats"></div>`;
+  container.appendChild(bar);
+
+  // Category chips
+  const cats = [...new Set((DS.icons||[]).map(i=>i.cat))];
+  const catsEl = bar.querySelector('#icon-cats');
+  const allChip = document.createElement('button');
+  allChip.className = 'icon-cat-chip active'; allChip.textContent = 'Todos'; allChip.dataset.cat = '';
+  allChip.onclick = function() { document.querySelectorAll('.icon-cat-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); filterIcons(); };
+  catsEl.appendChild(allChip);
+  cats.forEach(cat => {
+    const chip = document.createElement('button');
+    chip.className = 'icon-cat-chip'; chip.textContent = cat; chip.dataset.cat = cat;
+    chip.onclick = function() { document.querySelectorAll('.icon-cat-chip').forEach(c=>c.classList.remove('active')); this.classList.add('active'); filterIcons(); };
+    catsEl.appendChild(chip);
+  });
+
+  // Icon grid
+  const grid = document.createElement('div');
+  grid.className = 'icon-grid'; grid.id = 'icon-grid';
+  container.appendChild(grid);
+
+  const countEl = document.createElement('p');
+  countEl.id = 'icon-count';
+  countEl.style.cssText = 'font-size:12px;color:var(--text-3);margin-top:12px;';
+  container.appendChild(countEl);
+
+  window._iconContainer = container;
+  filterIcons();
+}
+
+window.filterIcons = function() {
+  const q = (document.getElementById('icon-search')?.value||'').toLowerCase();
+  const activeCat = document.querySelector('.icon-cat-chip.active')?.dataset?.cat || '';
+  const grid = document.getElementById('icon-grid');
+  const countEl = document.getElementById('icon-count');
+  if (!grid) return;
+  const filtered = (DS.icons||[]).filter(i =>
+    (!q || i.name.includes(q)) &&
+    (!activeCat || i.cat === activeCat)
+  );
+  grid.innerHTML = filtered.map(i => `
+    <div class="icon-card" onclick="navigator.clipboard.writeText('${i.name}');toast('\u201C${i.name}\u201D copiado!')">
+      <div class="icon-preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <text x="12" y="16" text-anchor="middle" font-size="11" stroke="none" fill="currentColor" font-family="monospace">${i.name.slice(0,3)}</text>
+        </svg>
+      </div>
+      <div class="icon-name">${i.name}</div>
+    </div>`).join('');
+  if (countEl) countEl.textContent = filtered.length + ' ícones';
+};
+
+/* ── AVATARS ── */
+function renderAvatars(container) {
+  const hero = document.createElement('div');
+  hero.className = 'page-hero';
+  hero.innerHTML = `<div class="page-eyebrow">Componentes</div><div class="page-title">${META.avatars.label}</div><div class="page-desc">${META.avatars.desc}</div>`;
+  container.appendChild(hero);
+
+  // Sizes section
+  const sizesSection = document.createElement('div');
+  sizesSection.innerHTML = `<h3 style="font-size:13px;font-weight:600;color:var(--text-2);margin:0 0 16px;text-transform:uppercase;letter-spacing:.06em;">Tamanhos</h3>`;
+  const sizesGrid = document.createElement('div');
+  sizesGrid.className = 'avatar-size-grid';
+  (DS.avatarSizes||[]).forEach(s => {
+    const item = document.createElement('div');
+    item.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:8px;';
+    const circle = document.createElement('div');
+    circle.className = 'avatar-circle';
+    circle.style.cssText = 'width:' + s.px + 'px;height:' + s.px + 'px;font-size:' + Math.round(s.px*0.35) + 'px;background:var(--accent);color:#fff;';
+    circle.textContent = 'BB';
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:11px;color:var(--text-3);text-align:center;';
+    lbl.innerHTML = s.name + '<br><span style="color:var(--text-4);">' + s.px + 'px</span>';
+    item.appendChild(circle); item.appendChild(lbl);
+    sizesGrid.appendChild(item);
+  });
+  sizesSection.appendChild(sizesGrid);
+  container.appendChild(sizesSection);
+
+  // Status section
+  const statusSection = document.createElement('div');
+  statusSection.style.marginTop = '32px';
+  statusSection.innerHTML = `<h3 style="font-size:13px;font-weight:600;color:var(--text-2);margin:0 0 16px;text-transform:uppercase;letter-spacing:.06em;">Status</h3>`;
+  const statuses = [
+    {label:'Online',color:'#22c55e'},
+    {label:'Ausente',color:'#f59e0b'},
+    {label:'Ocupado',color:'#ef4444'},
+    {label:'Offline',color:'#94a3b8'},
+  ];
+  const statusRow = document.createElement('div');
+  statusRow.style.cssText = 'display:flex;gap:32px;flex-wrap:wrap;';
+  statuses.forEach(st => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:8px;';
+    const circle = document.createElement('div');
+    circle.className = 'avatar-circle';
+    circle.style.cssText = 'width:40px;height:40px;font-size:14px;background:var(--accent);color:#fff;position:relative;';
+    circle.textContent = 'BB';
+    const dot = document.createElement('span');
+    dot.className = 'avatar-status avatar-online';
+    dot.style.background = st.color;
+    circle.appendChild(dot);
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:11px;color:var(--text-3);';
+    lbl.textContent = st.label;
+    wrap.appendChild(circle); wrap.appendChild(lbl);
+    statusRow.appendChild(wrap);
+  });
+  statusSection.appendChild(statusRow);
+  container.appendChild(statusSection);
+
+  // Users section
+  const usersSection = document.createElement('div');
+  usersSection.style.marginTop = '32px';
+  usersSection.innerHTML = `<h3 style="font-size:13px;font-weight:600;color:var(--text-2);margin:0 0 16px;text-transform:uppercase;letter-spacing:.06em;">Usuários de Exemplo</h3>`;
+  const usersGrid = document.createElement('div');
+  usersGrid.className = 'avatar-user-grid';
+  (DS.avatarUsers||[]).forEach(u => {
+    const card = document.createElement('div');
+    card.className = 'avatar-user-card';
+    const circle = document.createElement('div');
+    circle.className = 'avatar-circle';
+    circle.style.cssText = 'width:44px;height:44px;font-size:15px;background:' + u.color + ';color:#fff;';
+    circle.textContent = u.initials;
+    const info = document.createElement('div');
+    info.innerHTML = '<div style="font-size:13px;font-weight:500;color:var(--text-1);">' + u.name + '</div><div style="font-size:11px;color:var(--text-3);">Initials: ' + u.initials + '</div>';
+    card.appendChild(circle); card.appendChild(info);
+    usersGrid.appendChild(card);
+  });
+  usersSection.appendChild(usersGrid);
+  container.appendChild(usersSection);
+}
+
+/* ── SEARCH ── */
+function renderSearch(q) {
+  const content = document.getElementById('content');
+  content.innerHTML = `<div class="page-hero">
+    <div class="page-eyebrow">Busca</div>
+    <div class="page-title">Resultados para "${q}"</div>
+  </div>`;
+  const results = [];
+  for (const c of DS.colors||[]) if (c.name.toLowerCase().includes(q)||c.hex.toLowerCase().includes(q)) results.push({type:'Cor',name:c.name,val:c.hex,preview:`background:${c.hex}`});
+  for (const s of DS.textStyles||[]) if (s.name.toLowerCase().includes(q)) results.push({type:'Tipo',name:s.name,val:`${s.fontSize}px / ${s.fontWeight}`});
+  for (const s of DS.spacing||[]) if (s.name.toLowerCase().includes(q)) results.push({type:'Spacing',name:s.name,val:`${s.value}px`});
+  for (const r of DS.radii||[]) if (r.name.toLowerCase().includes(q)) results.push({type:'Radius',name:r.name,val:`${r.value}px`});
+  for (const e of DS.effects||[]) if (e.name.toLowerCase().includes(q)) results.push({type:'Sombra',name:e.name,val:`${e.x}px ${e.y}px ${e.blur}px`});
+  if (!results.length) { content.innerHTML += '<div class="empty-state">Nenhum token encontrado.</div>'; return; }
+  const wrap = document.createElement('div'); wrap.className = 'search-results';
+  for (const r of results) {
+    const row = document.createElement('div'); row.className = 'search-result-row';
+    const preview = r.preview ? `<div style="width:18px;height:18px;border-radius:4px;flex-shrink:0;border:1px solid var(--border);${r.preview}"></div>` : '';
+    row.innerHTML = `${preview}<span class="search-result-type">${r.type}</span><span class="search-result-name">${r.name}</span><span class="search-result-val">${r.val}</span>`;
+    wrap.appendChild(row);
+  }
+  content.appendChild(section(`${results.length} tokens encontrados`, '', wrap));
+}
+
+/* ── OVERVIEW ── */
+function renderOverview(container) {
+  const cards = [
+    { key:'colors', label:'Cores', icon:'<circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.3"/>', count: DS.colors?.length||0, preview: (DS.colors||[]).slice(0,8).map(c=>`<div class="overview-swatch" style="background:${c.hex}"></div>`).join('') },
+    { key:'typography', label:'Tipografia', icon:'<path d="M3 4h10M8 4v8M5.5 12h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>', count: DS.textStyles?.length||0, preview: '' },
+    { key:'spacing', label:'Espaçamentos', icon:'<path d="M4 3v10M12 3v10M4 8h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>', count: (DS.spacing||[]).filter(s=>!s.name.toLowerCase().includes('letter')&&!s.name.toLowerCase().includes('tracking')).length, preview: '' },
+    { key:'letterSpacing', label:'Letter Spacing', icon:'<path d="M2 8h12M5 5l-3 3 3 3M11 5l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>', count: (DS.spacing||[]).filter(s=>s.name.toLowerCase().includes('letter')||s.name.toLowerCase().includes('tracking')).length, preview: '' },
+    { key:'radius', label:'Border Radius', icon:'<rect x="2.5" y="2.5" width="11" height="11" rx="3.5" stroke="currentColor" stroke-width="1.3"/>', count: DS.radii?.length||0, preview: '' },
+    { key:'shadows', label:'Sombras', icon:'<rect x="2" y="2" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.3" opacity="0.3"/>', count: DS.effects?.length||0, preview: '' },
+    { key:'grids', label:'Grids', icon:'<path d="M2 5h12M2 9h12M5 2v12M11 2v12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>', count: DS.grids?.length||0, preview: '' },
+  ];
+  const grid = document.createElement('div'); grid.className = 'overview-grid';
+  for (const c of cards) {
+    const card = document.createElement('div'); card.className = 'overview-card';
+    card.innerHTML = `<div class="overview-icon"><svg width="18" height="18" viewBox="0 0 16 16" fill="none">${c.icon}</svg></div>
+      <div class="overview-label">${c.label}</div>
+      <div class="overview-count">${c.count} tokens</div>
+      ${c.preview ? `<div class="overview-preview">${c.preview}</div>` : ''}`;
+    card.onclick = () => { const btn = document.querySelector(`[data-section="${c.key}"]`); if(btn) nav(btn); };
+    grid.appendChild(card);
+  }
+  container.appendChild(grid);
+
+  // Fonte source card
+  const src = document.createElement('div'); src.className = 'overview-source';
+  src.innerHTML = `<div class="overview-source-icon">
+    <svg width="20" height="20" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4" height="4" rx="0.8" fill="#FF7262"/><rect x="7" y="1" width="4" height="4" rx="0.8" fill="#1ABCFE"/><rect x="1" y="7" width="4" height="4" rx="0.8" fill="#0ACF83"/><circle cx="9" cy="9" r="2" fill="#A259FF"/></svg>
+  </div>
+  <div class="overview-source-info">
+    <div class="overview-source-title">Fonte: Figma · BlackBirdDS</div>
+    <div class="overview-source-desc">Tokens extraídos via Figma MCP (get_local_variables + get_local_styles).<br>File key: <span style="font-family:'IBM Plex Mono',monospace;font-size:10px">80AeIURSIPxOKoZOXj7LAY</span></div>
+  </div>
+  <button class="btn btn-sm" onclick="reload()">↺ Sincronizar</button>`;
+  container.appendChild(src);
+}
+
+/* ── COLORS ── */
+function renderColors(container) {
+  const groups = ['all', ...new Set((DS.colors||[]).map(c=>c.group))];
+  const bar = document.createElement('div'); bar.className = 'filter-bar';
+  for (const g of groups) {
+    const btn = document.createElement('button'); btn.className = 'filter-chip' + (g===activeColorGroup?' active':'');
+    btn.textContent = g==='all' ? 'Todas' : g;
+    btn.onclick = () => { activeColorGroup=g; renderColors(container); };
+    bar.appendChild(btn);
+  }
+
+  const filtered = activeColorGroup==='all' ? (DS.colors||[]) : (DS.colors||[]).filter(c=>c.group===activeColorGroup);
+  const grouped = {};
+  for (const c of filtered) { if(!grouped[c.group]) grouped[c.group]=[]; grouped[c.group].push(c); }
+
+  const heroEl = document.createElement('div');
+  heroEl.className = 'page-hero';
+  heroEl.innerHTML = `<div class="page-eyebrow">Foundation</div><div class="page-title">${META.colors.label}</div><div class="page-desc">${META.colors.desc}</div>`;
+  container.innerHTML = '';
+  container.appendChild(heroEl);
+  container.appendChild(bar);
+
+  for (const [gName, cols] of Object.entries(grouped)) {
+    const grid = document.createElement('div'); grid.className = 'color-grid';
+    for (const c of cols) {
+      const lum = luminance(c.hex||'#888');
+      const fgColor = lum > 0.35 ? '#000' : '#fff';
+      const shortName = c.name.split('/').pop();
+      const cssVar = toCSSVarName(c.name);
+      const card = document.createElement('div'); card.className = 'color-card';
+      card.innerHTML = `
+        <div class="color-swatch" style="background:${c.hex}">
+          <div class="copy-overlay" onclick="navigator.clipboard.writeText('${c.hex}');toast('${c.hex} copiado!')"><span>copiar</span></div>
+        </div>
+        <div class="color-meta">
+          <div class="color-name" title="${c.name}">${shortName}</div>
+          <div class="color-hex">${c.hex}</div>
+          <div class="color-actions">
+            <button class="copy-chip" onclick="navigator.clipboard.writeText('${c.hex}');toast('HEX copiado!')">HEX</button>
+            <button class="copy-chip" onclick="navigator.clipboard.writeText('${hexToRgb(c.hex)}');toast('RGB copiado!')">RGB</button>
+            <button class="copy-chip" onclick="navigator.clipboard.writeText('${cssVar}');toast('Var copiada!')">var</button>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    }
+    container.appendChild(section(gName, cols.length, grid));
+  }
+}
+
+/* ── TYPOGRAPHY ── */
+function renderTypography(container) {
+  const weights = [...new Set((DS.textStyles||[]).map(s=>s.fontWeight))].sort((a,b)=>a-b);
+  const sizes = [...new Map((DS.textStyles||[]).map(s=>[s.fontSize, s])).values()].sort((a,b)=>a.fontSize-b.fontSize);
+  const weightFilter = document.createElement('div'); weightFilter.className='filter-bar';
+  const allBtn = document.createElement('button'); allBtn.className='filter-chip active'; allBtn.textContent='Todos os pesos'; allBtn.id='wf-all';
+  allBtn.onclick = () => { weightFilter.querySelectorAll('.wf-btn').forEach(b=>b.classList.remove('active')); allBtn.classList.add('active'); container.querySelectorAll('.type-weight-card').forEach(c=>c.style.display=''); };
+  weightFilter.appendChild(allBtn);
+  const weightNames = {100:'Thin',200:'ExtraLight',300:'Light',400:'Regular',500:'Medium',600:'SemiBold',700:'Bold',800:'ExtraBold',900:'Black'};
+  for (const w of weights) {
+    const btn = document.createElement('button'); btn.className='filter-chip wf-btn'; btn.textContent=weightNames[w]||w;
+    btn.onclick = () => {
+      weightFilter.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+      container.querySelectorAll('.type-weight-card').forEach(c=>c.style.display=c.dataset.weight==w?'':'none');
+    };
+    weightFilter.appendChild(btn);
+  }
+  container.appendChild(weightFilter);
+
+  const wrap = document.createElement('div');
+  for (const sz of sizes) {
+    const stylesForSize = (DS.textStyles||[]).filter(s=>s.fontSize===sz.fontSize);
+    const group = document.createElement('div'); group.className='type-size-group';
+    group.innerHTML = `<div class="type-size-header"><span class="type-size-label">text-${sz.name?.split('/')[0]?.replace('text-','')||sz.fontSize}</span><span class="type-size-px">${sz.fontSize}px · ${pxToRem(sz.fontSize)} · lh ${sz.lineHeight||1.5}</span></div>`;
+    const grid = document.createElement('div'); grid.className='type-weight-grid';
+    for (const s of stylesForSize) {
+      const card = document.createElement('div'); card.className='type-weight-card'; card.dataset.weight=s.fontWeight;
+      const wname = weightNames[s.fontWeight]||s.fontWeight;
+      const previewSize = Math.min(s.fontSize, 28);
+      card.innerHTML = `<div class="type-weight-name">${wname} · ${s.fontWeight}</div>
+        <div class="type-preview" style="font-size:${previewSize}px;font-weight:${s.fontWeight}">${s.name.split('/').pop()||'Aa — Texto'}</div>
+        <div class="type-meta">${s.fontFamily} · ${s.fontSize}px / ${s.fontWeight} · lh${s.lineHeight}</div>`;
+      grid.appendChild(card);
+    }
+    group.appendChild(grid);
+    wrap.appendChild(group);
+  }
+  container.appendChild(section('Estilos de texto', DS.textStyles?.length||0, wrap));
+}
+
+/* ── SPACING ── */
+function renderSpacing(container) {
+  const spaceTokens = (DS.spacing||[]).filter(s=>!s.name.toLowerCase().includes('letter')&&!s.name.toLowerCase().includes('tracking')).sort((a,b)=>a.value-b.value);
+  const list = document.createElement('div'); list.className='space-list';
+  const max = Math.max(...spaceTokens.map(s=>s.value), 1);
+  for (const s of spaceTokens) {
+    const pct = Math.max(2, (s.value/max)*100);
+    const row = document.createElement('div'); row.className='space-row';
+    row.innerHTML = `<div class="space-token">${s.name}</div>
+      <div><div class="space-bar-track"><div class="space-bar" style="width:${pct}%"></div></div></div>
+      <div class="space-vals">${s.value}px<br>${pxToRem(s.value)}</div>`;
+    list.appendChild(row);
+  }
+  container.appendChild(section('Escala de espaçamento', spaceTokens.length, list));
+}
+
+/* ── LETTER SPACING ── */
+function renderLetterSpacing(container) {
+  const lsTokens = (DS.spacing||[]).filter(s=>s.name.toLowerCase().includes('letter')||s.name.toLowerCase().includes('tracking'));
+  if (!lsTokens.length) { container.innerHTML += '<div class="empty-state">Nenhum token de letter-spacing encontrado.</div>'; return; }
+  const list = document.createElement('div'); list.className='ls-list';
+  for (const s of lsTokens) {
+    const val = s.value;
+    const row = document.createElement('div'); row.className='ls-row';
+    const sample = 'TRACKING EXAMPLE · Aa Bb Cc';
+    row.innerHTML = `<div class="ls-token">${s.name}</div>
+      <div class="ls-preview" style="letter-spacing:${val}px">${sample}</div>
+      <div class="ls-val">${val >= 0 ? '+' : ''}${val.toFixed(2)}px</div>`;
+    list.appendChild(row);
+  }
+  container.appendChild(section('Letter Spacing', lsTokens.length, list));
+}
+
+/* ── RADIUS ── */
+function renderRadius(container) {
+  const grid = document.createElement('div'); grid.className='radius-grid';
+  for (const r of DS.radii||[]) {
+    const displayR = r.value >= 9999 ? 9999 : r.value;
+    const card = document.createElement('div'); card.className='radius-card';
+    const shortName = r.name.split('/').pop();
+    card.innerHTML = `<div class="radius-demo" style="border-radius:${Math.min(r.value,30)}px"></div>
+      <div class="radius-name">${shortName}</div>
+      <div class="radius-val">${r.value>=9999?'9999px (full)':r.value+'px'}</div>`;
+    card.onclick = () => { navigator.clipboard.writeText(r.value>=9999?'9999px':r.value+'px'); toast(`${shortName}: ${r.value}px copiado!`); };
+    grid.appendChild(card);
+  }
+  container.appendChild(section('Border radius', DS.radii?.length||0, grid));
+}
+
+/* ── SHADOWS ── */
+function renderShadows(container) {
+  // Agrupar sombras por nome base
+  const named = {};
+  for (const e of DS.effects||[]) {
+    if (!named[e.name]) named[e.name]=[];
+    named[e.name].push(e);
+  }
+  const grid = document.createElement('div'); grid.className='shadow-grid';
+  for (const [name, layers] of Object.entries(named)) {
+    const cssVal = layers.map(l=>`${l.x}px ${l.y}px ${l.blur}px ${l.spread}px ${l.color}`).join(', ');
+    const card = document.createElement('div'); card.className='shadow-card';
+    card.innerHTML = `<div class="shadow-demo-wrap"><div class="shadow-demo" style="box-shadow:${cssVal}"></div></div>
+      <div class="shadow-name">${name}</div>
+      <div class="shadow-code" onclick="navigator.clipboard.writeText('box-shadow: ${cssVal};');toast('CSS copiado!')" title="Clique para copiar CSS">box-shadow: ${cssVal};</div>`;
+    grid.appendChild(card);
+  }
+  container.appendChild(section('Sombras & elevações', Object.keys(named).length, grid));
+}
+
+/* ── GRIDS ── */
+function renderGrids(container) {
+  const list = document.createElement('div'); list.className='grid-list';
+  for (const g of DS.grids||[]) {
+    const cols = Math.min(g.cols||12, 16);
+    const card = document.createElement('div'); card.className='grid-card';
+    card.innerHTML = `<div class="grid-preview">${Array(cols).fill('<div class="grid-col"></div>').join('')}</div>
+      <div class="grid-name">${g.name}</div>
+      <div class="grid-specs">
+        <span class="grid-spec">${g.cols} col</span>
+        ${g.gutter ? `<span class="grid-spec">gap ${g.gutter}px</span>` : ''}
+        ${g.margin ? `<span class="grid-spec">margin ${g.margin}px</span>` : ''}
+      </div>`;
+    list.appendChild(card);
+  }
+  container.appendChild(section('Grid systems', DS.grids?.length||0, list));
+}
+
+/* ── SECTION HELPER ── */
+function section(title, count, inner) {
+  const wrap = document.createElement('div'); wrap.className='section';
+  const hdr = document.createElement('div'); hdr.className='section-header';
+  hdr.innerHTML = `<div class="section-title">${title}</div>${count!==''?`<div class="section-count">${count} tokens</div>`:''}`;
+  wrap.appendChild(hdr);
+  wrap.appendChild(inner);
+  return wrap;
+}
+
+/* ── EXPORT ── */
+function exportTokens() {
+  if (!DS) return toast('Sem dados para exportar');
+  const blob = new Blob([JSON.stringify(DS, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='blackbirdds-tokens.json'; a.click();
+  toast('tokens.json exportado!');
+}
+
+function exportCSS() {
+  if (!DS) return toast('Sem dados para exportar');
+  const lines = [':root {'];
+  for (const c of DS.colors||[])
+    lines.push('  ' + toCSSVarName(c.name) + ': ' + c.hex + ';');
+  lines.push('');
+  for (const s of (DS.spacing||[]).filter(x=>!x.name.toLowerCase().includes('letter')&&!x.name.toLowerCase().includes('tracking')))
+    lines.push('  ' + toCSSVarName(s.name) + ': ' + s.value + 'px;');
+  lines.push('');
+  for (const r of DS.radii||[])
+    lines.push('  ' + toCSSVarName(r.name) + ': ' + (r.value>=9999?'9999px':r.value+'px') + ';');
+  lines.push('}');
+  const css = lines.join('\n');
+  const blob = new Blob([css], {type:'text/css'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='blackbirdds-tokens.css'; a.click();
+  toast('tokens.css exportado!');
+}
+function reload() { DS = null; window.FIGMA_DS = null; loadFromFigma(); }
+
+function fallbackDS() {
+  return {
+    colors: [
+      {name:'Brand/Primary',hex:'#155DFC',group:'Brand'},{name:'Brand/Secondary',hex:'#615FFF',group:'Brand'},{name:'Brand/Accent',hex:'#F6339A',group:'Brand'},
+      {name:'Neutral/50',hex:'#F9FAFB',group:'Neutral'},{name:'Neutral/200',hex:'#E5E7EB',group:'Neutral'},{name:'Neutral/500',hex:'#6A7282',group:'Neutral'},{name:'Neutral/900',hex:'#101828',group:'Neutral'},
+      {name:'Semantic/Success',hex:'#00C950',group:'Semantic'},{name:'Semantic/Warning',hex:'#FFB900',group:'Semantic'},{name:'Semantic/Danger',hex:'#FB2C36',group:'Semantic'},{name:'Semantic/Info',hex:'#2B7FFF',group:'Semantic'},
+    ],
+    textStyles: [
+      {name:'text-xs/font-normal',fontSize:12,fontFamily:'IBM Plex Sans JP',fontWeight:400,lineHeight:1.5,letterSpacing:0},
+      {name:'text-sm/font-normal',fontSize:14,fontFamily:'IBM Plex Sans JP',fontWeight:400,lineHeight:1.5,letterSpacing:0},
+      {name:'text-base/font-normal',fontSize:16,fontFamily:'IBM Plex Sans JP',fontWeight:400,lineHeight:1.5,letterSpacing:0},
+      {name:'text-2xl/font-semibold',fontSize:24,fontFamily:'IBM Plex Sans JP',fontWeight:600,lineHeight:1.5,letterSpacing:0},
+    ],
+    spacing: [
+      {name:'spacing/1',value:4},{name:'spacing/2',value:8},{name:'spacing/4',value:16},{name:'spacing/8',value:32},{name:'spacing/16',value:64},
+      {name:'font/letter-spacing/tracking-tight',value:-0.4},{name:'font/letter-spacing/tracking-normal',value:0},{name:'font/letter-spacing/tracking-wide',value:0.4},
+    ],
+    radii: [{name:'border-radius/rounded-sm',value:2},{name:'border-radius/rounded-md',value:6},{name:'border-radius/rounded-lg',value:8},{name:'border-radius/rounded-full',value:9999}],
+    effects: [
+      {name:'shadow',x:0,y:1,blur:3,spread:0,color:'rgba(0,0,0,0.1)'},
+      {name:'shadow-md',x:0,y:4,blur:6,spread:-1,color:'rgba(0,0,0,0.1)'},
+      {name:'shadow-xl',x:0,y:20,blur:25,spread:-5,color:'rgba(0,0,0,0.1)'},
+    ],
+    grids: [{name:'12 columns / gap-8',cols:12,gutter:32,margin:0},{name:'4 columns / gap-4',cols:4,gutter:16,margin:0}],
+  };
+}
+
+loadFromFigma();
+</script>
+</body>
+</html>

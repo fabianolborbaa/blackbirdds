@@ -1,0 +1,67 @@
+name: Sync from Figma
+
+on:
+  # ── 1. Scheduled: runs every day at 02:00 UTC ──────────────────────────────
+  schedule:
+    - cron: "0 2 * * *"
+
+  # ── 2. Manual trigger from GitHub UI ───────────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for manual sync (optional)"
+        required: false
+        default: "Manual sync"
+
+  # ── 3. Webhook trigger (fired by Figma → intermediary → GitHub) ────────────
+  #    Send a POST to:
+  #      https://api.github.com/repos/<owner>/<repo>/dispatches
+  #    Body:  {"event_type": "figma-publish"}
+  #    Auth:  Bearer token with repo scope
+  repository_dispatch:
+    types:
+      - figma-publish
+
+jobs:
+  sync:
+    name: Pull tokens from Figma and rebuild docs
+    runs-on: ubuntu-latest
+
+    # Only run if there's a Figma token configured
+    if: vars.FIGMA_FILE_ID != '' || true
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Python setup ────────────────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # ── Run sync ────────────────────────────────────────────────────────────
+      - name: Sync tokens from Figma
+        env:
+          FIGMA_TOKEN:   ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_FILE_ID: ${{ vars.FIGMA_FILE_ID || '2Ov115BSkN5jNisHpc6ZXq' }}
+        run: python3 scripts/sync_from_figma.py
+
+      # ── Commit & push (only if something changed) ───────────────────────────
+      - name: Commit changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blackbirdds-docs.html
+          if git diff --staged --quiet; then
+            echo "No changes — docs are already up to date."
+          else
+            git commit -m "chore: sync design tokens from Figma [skip ci]"
+            git push
+            echo "✅ Pushed updated docs."
+          fi
