@@ -26,6 +26,8 @@ jobs:
   sync:
     name: Pull tokens from Figma and rebuild docs
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     # Only run if there's a Figma token configured
     if: vars.FIGMA_FILE_ID != '' || true
