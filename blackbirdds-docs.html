@@ -445,6 +445,101 @@ html.dark .bb-input-field-disabled { background: #22222f; border-color: rgba(255
 
 /* -- Inputs demo row override -- */
 .inputs-demo-row { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+
+/* ── Tabs ────────────────────────────────────────────────────────────────── */
+.bb-tab-bar { display:flex; border-bottom:1px solid var(--color-border-default,#E5E7EB); gap:0; }
+.bb-tab {
+  display:flex; align-items:center; gap:6px;
+  padding:10px 16px 8px; font-size:14px; font-weight:500;
+  color:var(--color-text-secondary,#4A5565); cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-1px;
+  background:none; border-top:none; border-left:none; border-right:none;
+  transition:color .15s, border-color .15s, background .15s;
+}
+.bb-tab:hover { color:var(--color-text-primary,#101828); background:var(--color-bg-tertiary,#F3F4F6); }
+.bb-tab.active { color:var(--color-accent-default,#155DFC); border-bottom-color:var(--color-accent-default,#155DFC); }
+.bb-tab.disabled { color:var(--color-text-disabled,#D1D5DC); pointer-events:none; }
+.bb-tab-sm { padding:6px 12px 4px; font-size:12px; }
+.bb-tab-lg { padding:14px 20px 12px; font-size:16px; }
+
+/* ── Alerts ──────────────────────────────────────────────────────────────── */
+.bb-alert {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:14px 16px; border-radius:8px; border:1px solid transparent;
+  font-size:14px; line-height:1.5;
+}
+.bb-alert-icon {
+  width:20px; height:20px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#fff; margin-top:1px;
+}
+.bb-alert-body { flex:1; }
+.bb-alert-title { font-weight:600; margin-bottom:2px; }
+.bb-alert-desc { font-size:13px; opacity:.85; }
+.bb-alert-close {
+  background:none; border:none; cursor:pointer; font-size:18px;
+  line-height:1; padding:0; opacity:.7; flex-shrink:0;
+}
+.bb-alert-close:hover { opacity:1; }
+.bb-alert-success { background:#F0FDF4; border-color:#B9F8CF; }
+.bb-alert-success .bb-alert-icon { background:#008236; }
+.bb-alert-success .bb-alert-title { color:#008236; }
+.bb-alert-success .bb-alert-close { color:#008236; }
+.bb-alert-warning { background:#FFFBEB; border-color:#FEE685; }
+.bb-alert-warning .bb-alert-icon { background:#BB4D00; }
+.bb-alert-warning .bb-alert-title { color:#BB4D00; }
+.bb-alert-warning .bb-alert-close { color:#BB4D00; }
+.bb-alert-error { background:#FEF2F2; border-color:#FFC9C9; }
+.bb-alert-error .bb-alert-icon { background:#C10007; }
+.bb-alert-error .bb-alert-title { color:#C10007; }
+.bb-alert-error .bb-alert-close { color:#C10007; }
+.bb-alert-info { background:#F0F9FF; border-color:#B8E6FE; }
+.bb-alert-info .bb-alert-icon { background:#0069A8; }
+.bb-alert-info .bb-alert-title { color:#0069A8; }
+.bb-alert-info .bb-alert-close { color:#0069A8; }
+
+/* ── Calendar ────────────────────────────────────────────────────────────── */
+.bb-cal {
+  display:inline-flex; flex-direction:column; gap:8px;
+  background:#fff; border:1px solid var(--color-border-default,#E5E7EB);
+  border-radius:12px; padding:16px; width:288px;
+}
+.bb-cal-header {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:14px; font-weight:600; color:var(--color-text-primary,#101828);
+  padding:0 4px; margin-bottom:4px;
+}
+.bb-cal-nav {
+  background:none; border:none; cursor:pointer; font-size:20px;
+  color:var(--color-text-secondary,#4A5565); padding:0 4px; line-height:1;
+}
+.bb-cal-nav:hover { color:var(--color-text-primary,#101828); }
+.bb-cal-weekdays {
+  display:grid; grid-template-columns:repeat(7,1fr);
+  text-align:center; font-size:11px; font-weight:500;
+  color:var(--color-text-secondary,#4A5565); margin-bottom:2px;
+}
+.bb-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.bb-cal-day {
+  aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+  font-size:13px; border-radius:8px; cursor:pointer;
+  color:var(--color-text-primary,#101828);
+  transition:background .1s;
+}
+.bb-cal-day:hover { background:var(--color-bg-tertiary,#F3F4F6); }
+.bb-cal-day.today { background:var(--color-bg-inverse,#101828); color:var(--color-text-inverse,#fff); font-weight:600; border:2px solid var(--color-accent-default,#155DFC); border-radius:8px; }
+.bb-cal-day.selected { background:var(--colors-brand-050,#EEF6FF); color:var(--color-accent-text,#1447E6); font-weight:600; border:1px solid var(--color-border-focus,#155DFC); border-radius:8px; }
+.bb-cal-day.in-range { background:rgba(21,93,252,.1); color:#155DFC; border-radius:0; }
+.bb-cal-day.range-end { background:rgba(21,93,252,.1); color:#155DFC; border-radius:0 8px 8px 0; }
+.bb-cal-day.disabled { color:var(--color-text-disabled,#D1D5DC); pointer-events:none; }
+.bb-cal-day.empty { pointer-events:none; color:var(--color-text-disabled,#D1D5DC); }
+
+html.dark .bb-alert-success { background:#032E15; border-color:#016630; }
+html.dark .bb-alert-warning { background:#461901; border-color:#973C00; }
+html.dark .bb-alert-error   { background:#460809; border-color:#9F0712; }
+html.dark .bb-alert-info    { background:#052F4A; border-color:#00598A; }
+html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
+
 </style>
 </head>
 <body>
@@ -1297,6 +1392,409 @@ html.dark .bb-input-field-disabled { background: #22222f; border-color: rgba(255
         <li>Error states must never rely on color alone — pair the red border with the error message text.</li>
         <li>Disabled inputs should have <code>aria-disabled="true"</code> if using a non-native element.</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ TABS ═══════════ -->
+<section id="comp-tabs" class="section">
+  <div class="page-header">
+    <div class="page-eyebrow">Component</div>
+    <div class="page-title-row">
+      <h1 class="page-title">Tabs</h1>
+      <span class="badge badge-stable">Stable</span>
+    </div>
+    <p class="page-desc">Navigation component for switching between related content sections without leaving the page.</p>
+    <div class="page-meta">
+      <span class="meta-pill">3 sizes</span>
+      <span class="meta-pill">4 states</span>
+      <span class="meta-pill">Figma ready</span>
+    </div>
+  </div>
+
+  <div class="comp-tabs-nav">
+    <button class="comp-tab active" onclick="switchTab(this,'tabs-demo')">Demo</button>
+    <button class="comp-tab" onclick="switchTab(this,'tabs-props')">Props</button>
+    <button class="comp-tab" onclick="switchTab(this,'tabs-tokens')">Tokens</button>
+    <button class="comp-tab" onclick="switchTab(this,'tabs-guide')">Guidelines</button>
+  </div>
+
+  <!-- Demo -->
+  <div id="tabs-demo" class="comp-tab-panel active">
+    <div class="demo-block">
+      <div class="demo-label">Default tab bar (MD)</div>
+      <div class="bb-tab-bar">
+        <button class="bb-tab">Overview</button>
+        <button class="bb-tab active">Components</button>
+        <button class="bb-tab">Tokens</button>
+        <button class="bb-tab disabled">Disabled</button>
+      </div>
+    </div>
+    <div class="demo-block" style="margin-top:24px">
+      <div class="demo-label">Sizes</div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div>
+          <div class="demo-sublabel" style="font-size:11px;color:#9898b0;margin-bottom:8px">Small</div>
+          <div class="bb-tab-bar">
+            <button class="bb-tab bb-tab-sm">Overview</button>
+            <button class="bb-tab bb-tab-sm active">Components</button>
+            <button class="bb-tab bb-tab-sm">Tokens</button>
+          </div>
+        </div>
+        <div>
+          <div class="demo-sublabel" style="font-size:11px;color:#9898b0;margin-bottom:8px">Medium (default)</div>
+          <div class="bb-tab-bar">
+            <button class="bb-tab">Overview</button>
+            <button class="bb-tab active">Components</button>
+            <button class="bb-tab">Tokens</button>
+          </div>
+        </div>
+        <div>
+          <div class="demo-sublabel" style="font-size:11px;color:#9898b0;margin-bottom:8px">Large</div>
+          <div class="bb-tab-bar">
+            <button class="bb-tab bb-tab-lg">Overview</button>
+            <button class="bb-tab bb-tab-lg active">Components</button>
+            <button class="bb-tab bb-tab-lg">Tokens</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Props -->
+  <div id="tabs-props" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Options</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>size</code></td><td>string</td><td><code>md</code></td><td>sm, md, lg</td><td>Controls tab height and font size</td></tr>
+        <tr><td><code>active</code></td><td>boolean</td><td><code>false</code></td><td>true, false</td><td>Marks tab as currently selected</td></tr>
+        <tr><td><code>disabled</code></td><td>boolean</td><td><code>false</code></td><td>true, false</td><td>Prevents interaction with the tab</td></tr>
+        <tr><td><code>icon</code></td><td>ReactNode</td><td>—</td><td>Any icon</td><td>Optional leading icon</td></tr>
+        <tr><td><code>onChange</code></td><td>function</td><td>—</td><td>—</td><td>Callback when tab is clicked</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tokens -->
+  <div id="tabs-tokens" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
+      <tbody>
+        <tr><td><code>color/text/secondary</code></td><td>Default tab label</td><td>#4A5565</td><td>#94A3B8</td></tr>
+        <tr><td><code>color/text/primary</code></td><td>Hover tab label</td><td>#101828</td><td>#F9FAFB</td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Active label + indicator</td><td>#155DFC</td><td>#2B7FFF</td></tr>
+        <tr><td><code>color/text/disabled</code></td><td>Disabled tab label</td><td>#D1D5DC</td><td>#333E4F</td></tr>
+        <tr><td><code>color/bg/secondary</code></td><td>Hover background</td><td>#F9FAFB</td><td>#1A1A24</td></tr>
+        <tr><td><code>color/border/default</code></td><td>Tab bar bottom border</td><td>#E5E7EB</td><td>rgba(255,255,255,.08)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Guidelines -->
+  <div id="tabs-guide" class="comp-tab-panel">
+    <div class="guidelines-grid">
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Use tabs to switch between views of the same context — all tabs should relate to the same subject.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't use tabs for navigation between completely different pages or sections of an app.</p>
+      </div>
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Keep tab labels short (1–2 words). If you need longer labels, consider a different pattern.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't use more than 6 tabs in a single tab bar — use a dropdown or navigation instead.</p>
+      </div>
+    </div>
+    <div class="a11y-block" style="margin-top:24px">
+      <h4>Accessibility</h4>
+      <p>Use <code>role="tablist"</code> on the container, <code>role="tab"</code> on each tab, and <code>role="tabpanel"</code> on each panel. Support keyboard navigation with arrow keys.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ALERTS ═══════════ -->
+<section id="comp-alerts" class="section">
+  <div class="page-header">
+    <div class="page-eyebrow">Component</div>
+    <div class="page-title-row">
+      <h1 class="page-title">Alerts</h1>
+      <span class="badge badge-stable">Stable</span>
+    </div>
+    <p class="page-desc">Contextual feedback messages that communicate status, warnings, errors, or informational content to the user.</p>
+    <div class="page-meta">
+      <span class="meta-pill">4 types</span>
+      <span class="meta-pill">Dismissible</span>
+      <span class="meta-pill">Figma ready</span>
+    </div>
+  </div>
+
+  <div class="comp-tabs-nav">
+    <button class="comp-tab active" onclick="switchTab(this,'alerts-demo')">Demo</button>
+    <button class="comp-tab" onclick="switchTab(this,'alerts-props')">Props</button>
+    <button class="comp-tab" onclick="switchTab(this,'alerts-tokens')">Tokens</button>
+    <button class="comp-tab" onclick="switchTab(this,'alerts-guide')">Guidelines</button>
+  </div>
+
+  <!-- Demo -->
+  <div id="alerts-demo" class="comp-tab-panel active">
+    <div class="demo-block" style="display:flex;flex-direction:column;gap:12px;">
+      <div class="bb-alert bb-alert-success">
+        <div class="bb-alert-icon">✓</div>
+        <div class="bb-alert-body">
+          <div class="bb-alert-title">Changes saved successfully</div>
+          <div class="bb-alert-desc">Your design tokens have been published to all connected projects.</div>
+        </div>
+        <button class="bb-alert-close">×</button>
+      </div>
+      <div class="bb-alert bb-alert-warning">
+        <div class="bb-alert-icon">⚠</div>
+        <div class="bb-alert-body">
+          <div class="bb-alert-title">Unsaved changes detected</div>
+          <div class="bb-alert-desc">You have uncommitted token changes. Publish before deploying.</div>
+        </div>
+        <button class="bb-alert-close">×</button>
+      </div>
+      <div class="bb-alert bb-alert-error">
+        <div class="bb-alert-icon">✕</div>
+        <div class="bb-alert-body">
+          <div class="bb-alert-title">Sync failed</div>
+          <div class="bb-alert-desc">Could not connect to Figma API. Check your token and try again.</div>
+        </div>
+        <button class="bb-alert-close">×</button>
+      </div>
+      <div class="bb-alert bb-alert-info">
+        <div class="bb-alert-icon">ℹ</div>
+        <div class="bb-alert-body">
+          <div class="bb-alert-title">Scheduled sync active</div>
+          <div class="bb-alert-desc">Tokens sync automatically every day at 02:00 UTC.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Props -->
+  <div id="alerts-props" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Options</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>type</code></td><td>string</td><td><code>info</code></td><td>success, warning, error, info</td><td>Determines color and icon</td></tr>
+        <tr><td><code>title</code></td><td>string</td><td>—</td><td>—</td><td>Bold heading of the alert</td></tr>
+        <tr><td><code>description</code></td><td>string</td><td>—</td><td>—</td><td>Supporting description text</td></tr>
+        <tr><td><code>dismissible</code></td><td>boolean</td><td><code>false</code></td><td>true, false</td><td>Shows the close (×) button</td></tr>
+        <tr><td><code>onDismiss</code></td><td>function</td><td>—</td><td>—</td><td>Callback when dismissed</td></tr>
+        <tr><td><code>icon</code></td><td>ReactNode</td><td>auto</td><td>Any icon</td><td>Override the default type icon</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tokens -->
+  <div id="alerts-tokens" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
+      <tbody>
+        <tr><td><code>color/semantic/success/bg</code></td><td>Success background</td><td>#F0FDF4</td><td>#032E15</td></tr>
+        <tr><td><code>color/semantic/success/text</code></td><td>Success title + icon</td><td>#008236</td><td>#7BF1A8</td></tr>
+        <tr><td><code>color/semantic/success/border</code></td><td>Success border</td><td>#B9F8CF</td><td>#016630</td></tr>
+        <tr><td><code>color/semantic/warning/bg</code></td><td>Warning background</td><td>#FFFBEB</td><td>#461901</td></tr>
+        <tr><td><code>color/semantic/warning/text</code></td><td>Warning title + icon</td><td>#BB4D00</td><td>#FFD230</td></tr>
+        <tr><td><code>color/semantic/warning/border</code></td><td>Warning border</td><td>#FEE685</td><td>#973C00</td></tr>
+        <tr><td><code>color/semantic/error/bg</code></td><td>Error background</td><td>#FEF2F2</td><td>#460809</td></tr>
+        <tr><td><code>color/semantic/error/text</code></td><td>Error title + icon</td><td>#C10007</td><td>#FFA2A2</td></tr>
+        <tr><td><code>color/semantic/error/border</code></td><td>Error border</td><td>#FFC9C9</td><td>#9F0712</td></tr>
+        <tr><td><code>color/semantic/info/bg</code></td><td>Info background</td><td>#F0F9FF</td><td>#052F4A</td></tr>
+        <tr><td><code>color/semantic/info/text</code></td><td>Info title + icon</td><td>#0069A8</td><td>#74D4FF</td></tr>
+        <tr><td><code>color/semantic/info/border</code></td><td>Info border</td><td>#B8E6FE</td><td>#00598A</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Guidelines -->
+  <div id="alerts-guide" class="comp-tab-panel">
+    <div class="guidelines-grid">
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Be specific in alert messages — tell the user exactly what happened and what they can do next.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't stack more than 3 alerts at once. Use a toast/notification queue for high-frequency events.</p>
+      </div>
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Use <strong>error</strong> only for blocking failures, <strong>warning</strong> for potential issues, and <strong>info</strong> for neutral updates.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't auto-dismiss error alerts — the user needs time to read and act on them.</p>
+      </div>
+    </div>
+    <div class="a11y-block" style="margin-top:24px">
+      <h4>Accessibility</h4>
+      <p>Add <code>role="alert"</code> and <code>aria-live="polite"</code> (or <code>"assertive"</code> for errors) so screen readers announce the message. Ensure dismiss buttons have an <code>aria-label</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CALENDAR ═══════════ -->
+<section id="comp-calendar" class="section">
+  <div class="page-header">
+    <div class="page-eyebrow">Component</div>
+    <div class="page-title-row">
+      <h1 class="page-title">Calendar</h1>
+      <span class="badge badge-stable">Stable</span>
+    </div>
+    <p class="page-desc">Date picker and calendar display for selecting single dates or date ranges, with support for disabled dates and range highlighting.</p>
+    <div class="page-meta">
+      <span class="meta-pill">4 states</span>
+      <span class="meta-pill">Event indicators</span>
+      <span class="meta-pill">Figma ready</span>
+    </div>
+  </div>
+
+  <div class="comp-tabs-nav">
+    <button class="comp-tab active" onclick="switchTab(this,'cal-demo')">Demo</button>
+    <button class="comp-tab" onclick="switchTab(this,'cal-props')">Props</button>
+    <button class="comp-tab" onclick="switchTab(this,'cal-tokens')">Tokens</button>
+    <button class="comp-tab" onclick="switchTab(this,'cal-guide')">Guidelines</button>
+  </div>
+
+  <!-- Demo -->
+  <div id="cal-demo" class="comp-tab-panel active">
+    <div class="demo-block">
+      <div class="demo-label">Month view — April 2026</div>
+      <div class="bb-cal">
+        <div class="bb-cal-header">
+          <button class="bb-cal-nav">‹</button>
+          <span>April 2026</span>
+          <button class="bb-cal-nav">›</button>
+        </div>
+        <div class="bb-cal-weekdays">
+          <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+        </div>
+        <div class="bb-cal-grid">
+          <!-- April 2026 starts on Wednesday -->
+          <div class="bb-cal-day empty">29</div>
+          <div class="bb-cal-day empty">30</div>
+          <div class="bb-cal-day empty">31</div>
+          <div class="bb-cal-day">1</div>
+          <div class="bb-cal-day">2</div>
+          <div class="bb-cal-day">3</div>
+          <div class="bb-cal-day">4</div>
+          <div class="bb-cal-day">5</div>
+          <div class="bb-cal-day">6</div>
+          <div class="bb-cal-day">7</div>
+          <div class="bb-cal-day">8</div>
+          <div class="bb-cal-day today">9</div>
+          <div class="bb-cal-day">10</div>
+          <div class="bb-cal-day">11</div>
+          <div class="bb-cal-day">12</div>
+          <div class="bb-cal-day">13</div>
+          <div class="bb-cal-day">14</div>
+          <div class="bb-cal-day selected">15</div>
+          <div class="bb-cal-day">16</div>
+          <div class="bb-cal-day">17</div>
+          <div class="bb-cal-day">18</div>
+          <div class="bb-cal-day">19</div>
+          <div class="bb-cal-day">20</div>
+          <div class="bb-cal-day">21</div>
+          <div class="bb-cal-day">22</div>
+          <div class="bb-cal-day">23</div>
+          <div class="bb-cal-day">24</div>
+          <div class="bb-cal-day">25</div>
+          <div class="bb-cal-day">26</div>
+          <div class="bb-cal-day">27</div>
+          <div class="bb-cal-day">28</div>
+          <div class="bb-cal-day">29</div>
+          <div class="bb-cal-day">30</div>
+          <div class="bb-cal-day empty">1</div>
+          <div class="bb-cal-day empty">2</div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-block" style="margin-top:24px">
+      <div class="demo-label">Day states</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div class="bb-cal-day" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--color-border-default,#E5E7EB)">22</div>
+        <div class="bb-cal-day today" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:2px solid #155DFC;background:var(--color-bg-inverse,#101828);color:#fff;font-weight:600">9</div>
+        <div class="bb-cal-day selected" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px">15</div>
+        <div class="bb-cal-day disabled" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--color-border-default,#E5E7EB)">28</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Props -->
+  <div id="cal-props" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>value</code></td><td>Date | [Date, Date]</td><td>—</td><td>Selected date or date range</td></tr>
+        <tr><td><code>onChange</code></td><td>function</td><td>—</td><td>Callback on date selection</td></tr>
+        <tr><td><code>mode</code></td><td>string</td><td><code>single</code></td><td>single or range selection mode</td></tr>
+        <tr><td><code>minDate</code></td><td>Date</td><td>—</td><td>Earliest selectable date</td></tr>
+        <tr><td><code>maxDate</code></td><td>Date</td><td>—</td><td>Latest selectable date</td></tr>
+        <tr><td><code>disabledDates</code></td><td>Date[]</td><td>—</td><td>Specific dates to disable</td></tr>
+        <tr><td><code>initialMonth</code></td><td>Date</td><td>today</td><td>Month displayed on mount</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tokens -->
+  <div id="cal-tokens" class="comp-tab-panel">
+    <table class="props-table">
+      <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">DEFAULT STATE</td></tr>
+        <tr><td><code>color/surface/default</code></td><td>Day cell background</td><td>#FFFFFF</td><td>#1D293D</td></tr>
+        <tr><td><code>color/border/default</code></td><td>Day cell + container border</td><td>#E5E7EB</td><td>rgba(255,255,255,.08)</td></tr>
+        <tr><td><code>color/text/primary</code></td><td>Default day number</td><td>#101828</td><td>#F9FAFB</td></tr>
+        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">TODAY STATE</td></tr>
+        <tr><td><code>color/bg/inverse</code></td><td>Today cell background</td><td>#101828</td><td>#FFFFFF</td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Today cell border ring</td><td>#155DFC</td><td>#2B7FFF</td></tr>
+        <tr><td><code>color/text/inverse</code></td><td>Today day number</td><td>#FFFFFF</td><td>#101828</td></tr>
+        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">SELECTED STATE</td></tr>
+        <tr><td><code>colors/brand/050</code></td><td>Selected cell background</td><td>#EEF6FF</td><td>#EEF6FF</td></tr>
+        <tr><td><code>color/border/focus</code></td><td>Selected cell border</td><td>#155DFC</td><td>#51A2FF</td></tr>
+        <tr><td><code>color/accent/text</code></td><td>Selected day number</td><td>#1447E6</td><td>#8EC5FF</td></tr>
+        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">DISABLED &amp; EVENTS</td></tr>
+        <tr><td><code>color/text/disabled</code></td><td>Disabled day number</td><td>#D1D5DC</td><td>#333E4F</td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Event indicator dot</td><td>#155DFC</td><td>#2B7FFF</td></tr>
+        <tr><td><code>color/text/inverse</code></td><td>Event dot on Today (dark bg)</td><td>#FFFFFF</td><td>#101828</td></tr>
+        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">INTERACTION</td></tr>
+        <tr><td><code>color/bg/tertiary</code></td><td>Hover day background</td><td>#F3F4F6</td><td>#22222F</td></tr>
+        <tr><td><code>color/text/secondary</code></td><td>Weekday labels, nav arrows</td><td>#4A5565</td><td>#94A3B8</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Guidelines -->
+  <div id="cal-guide" class="comp-tab-panel">
+    <div class="guidelines-grid">
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Show today's date clearly highlighted so users have immediate orientation within the calendar.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't use a calendar picker for year-only or month-only selection — use a dropdown instead.</p>
+      </div>
+      <div class="guideline-card do">
+        <div class="guideline-label">Do</div>
+        <p>Clearly indicate the selected range with a start marker, end marker, and in-range fill.</p>
+      </div>
+      <div class="guideline-card dont">
+        <div class="guideline-label">Don't</div>
+        <p>Don't disable large contiguous blocks of dates without explaining why to the user.</p>
+      </div>
+    </div>
+    <div class="a11y-block" style="margin-top:24px">
+      <h4>Accessibility</h4>
+      <p>Use <code>role="grid"</code> on the day grid, <code>role="gridcell"</code> on each day, and <code>aria-selected</code> on selected dates. Support keyboard navigation: arrow keys to move days, Enter to select, Escape to close.</p>
     </div>
   </div>
 </section>
