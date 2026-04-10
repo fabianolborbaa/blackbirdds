@@ -775,6 +775,100 @@ html.dark .a11y-block code { background:#22222f; border-color:rgba(255,255,255,.
 html.dark .bb-cal-weekdays span { color:#62748E; }
 html.dark .bb-cal-day.today { background:#101828; color:#fff; }
 
+/* ── PLAYGROUND ──────────────────────────────────────────────────────────── */
+.pg-tab { color:var(--accent) !important; font-weight:600 !important; }
+.pg-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+.pg-layout {
+  display:grid; grid-template-columns:220px 1fr; gap:20px; align-items:start;
+}
+.pg-controls {
+  display:flex; flex-direction:column; gap:16px;
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:10px; padding:18px;
+}
+.pg-ctrl-label {
+  font-size:10px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--text-4); margin-bottom:6px;
+  display:block;
+}
+.pg-ctrl-btn {
+  width:100%; padding:7px 12px; border-radius:6px; border:1.5px solid var(--border);
+  background:var(--bg); color:var(--text-2); font-size:13px; cursor:pointer;
+  text-align:left; font-family:var(--font); text-transform:capitalize;
+  transition:.1s; margin-bottom:4px;
+}
+.pg-ctrl-btn:last-child { margin-bottom:0; }
+.pg-ctrl-btn.active {
+  border-color:#155DFC; background:#EEF6FF; color:#155DFC; font-weight:600;
+}
+.pg-toggle-row { display:flex; align-items:center; justify-content:space-between; }
+.pg-toggle {
+  width:36px; height:20px; border-radius:10px; cursor:pointer;
+  transition:.2s; position:relative; flex-shrink:0; border:none; padding:0;
+}
+.pg-toggle.on  { background:#155DFC; }
+.pg-toggle.off { background:#D1D5DC; }
+.pg-toggle-knob {
+  position:absolute; top:2px; width:16px; height:16px; border-radius:50%;
+  background:#fff; transition:.2s; box-shadow:0 1px 3px rgba(0,0,0,.25);
+}
+.pg-toggle.on  .pg-toggle-knob { left:18px; }
+.pg-toggle.off .pg-toggle-knob { left:2px; }
+.pg-ctrl-input, .pg-ctrl-textarea {
+  width:100%; padding:7px 10px; border-radius:6px; border:1.5px solid var(--border);
+  background:var(--bg); color:var(--text-1); font-size:13px;
+  font-family:var(--font); outline:none; transition:.15s; box-sizing:border-box;
+}
+.pg-ctrl-input:focus, .pg-ctrl-textarea:focus { border-color:#155DFC; }
+.pg-ctrl-textarea { resize:vertical; line-height:1.5; }
+
+.pg-preview-area {
+  display:flex; flex-direction:column; gap:16px;
+}
+.pg-preview-label {
+  font-size:10px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--text-4);
+}
+.pg-preview-box {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:10px; padding:24px; min-height:80px;
+}
+.pg-reset-btn {
+  align-self:flex-start; padding:5px 12px; border-radius:6px;
+  border:1.5px solid var(--border); background:var(--bg);
+  font-size:12px; color:var(--text-3); cursor:pointer; font-family:var(--font);
+}
+.pg-reset-btn:hover { background:var(--bg-2); color:var(--text-1); }
+
+.pg-code-wrap {
+  border-radius:10px; overflow:hidden; border:1px solid var(--border);
+  margin-top:20px;
+}
+.pg-code-header {
+  background:#1E2939; padding:10px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.pg-code-lang { font-size:11px; font-weight:600; color:#64748B; letter-spacing:.06em; }
+.pg-code-copy {
+  background:rgba(255,255,255,.08); border:none; border-radius:5px;
+  padding:4px 12px; font-size:11px; color:#94A3B8; cursor:pointer;
+  font-family:var(--font); transition:.1s;
+}
+.pg-code-copy:hover { background:rgba(255,255,255,.15); color:#E2E8F0; }
+.pg-code-pre {
+  background:#101828; margin:0; padding:20px 20px;
+  font-size:13px; line-height:1.8; overflow-x:auto;
+  font-family:'IBM Plex Mono', monospace; color:#E2E8F0;
+}
+/* syntax colours */
+.pg-tok-tag     { color:#7DD3FC; }
+.pg-tok-attr    { color:#86EFAC; }
+.pg-tok-str     { color:#FCA5A5; }
+.pg-tok-bool    { color:#C4B5FD; }
+.pg-tok-comment { color:#475569; font-style:italic; }
+
+html.dark .pg-ctrl-btn.active { background:rgba(21,93,252,.15); }
 
 </style>
 </head>
@@ -1784,6 +1878,9 @@ html.dark .bb-cal-day.today { background:#101828; color:#fff; }
     <button class="comp-tab" onclick="switchTab(this,'alerts-props')">Props</button>
     <button class="comp-tab" onclick="switchTab(this,'alerts-tokens')">Tokens</button>
     <button class="comp-tab" onclick="switchTab(this,'alerts-guide')">Guidelines</button>
+    <button class="comp-tab pg-tab" onclick="switchTab(this,'alerts-playground')">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="margin-right:4px;vertical-align:-1px"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 4.5l3 1.5-3 1.5V4.5z" fill="currentColor"/></svg>Playground
+    </button>
   </div>
 
   <!-- Demo -->
@@ -1897,6 +1994,11 @@ html.dark .bb-cal-day.today { background:#101828; color:#fff; }
       <h4>Accessibility</h4>
       <p>Add <code>role="alert"</code> and <code>aria-live="polite"</code> (or <code>"assertive"</code> for errors) so screen readers announce the message. Ensure dismiss buttons have an <code>aria-label</code>.</p>
     </div>
+  </div>
+
+  <!-- Playground -->
+  <div id="alerts-playground" class="comp-tab-panel">
+    <div id="alert-playground-mount"></div>
   </div>
 </section>
 
@@ -2508,5 +2610,246 @@ renderRadius();
 renderShadows();
 renderGrids();
 </script>
+<!-- ── REACT RUNTIME ──────────────────────────────────────────────────────── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+
+<script>
+// ── Alert React component ─────────────────────────────────────────────────────
+(function() {
+  const { useState, createElement: el } = React;
+
+  const TOKENS = {
+    success: { bg:'#F0FDF4', border:'#B9F8CF', text:'#008236', bar:'#00A63E', darkBg:'#032E15', darkBorder:'#016630', darkText:'#7BF1A8', darkBar:'#00C950' },
+    warning: { bg:'#FFFBEB', border:'#FEE685', text:'#BB4D00', bar:'#E17100', darkBg:'#461901', darkBorder:'#973C00', darkText:'#FFD230', darkBar:'#FE9A00' },
+    error:   { bg:'#FEF2F2', border:'#FFC9C9', text:'#C10007', bar:'#E7000B', darkBg:'#460809', darkBorder:'#9F0712', darkText:'#FFA2A2', darkBar:'#FB2C36' },
+    info:    { bg:'#F0F9FF', border:'#B8E6FE', text:'#0069A8', bar:'#0084D1', darkBg:'#052F4A', darkBorder:'#00598A', darkText:'#74D4FF', darkBar:'#00A6F4' },
+  };
+
+  // SVG icons per type
+  function Icon({ type, color }) {
+    const s = { width:18, height:18, flexShrink:0, marginTop:2, color };
+    if (type === 'success') return el('svg', { viewBox:'0 0 20 20', fill:'none', style:s },
+      el('circle', { cx:10, cy:10, r:9, stroke:'currentColor', strokeWidth:1.6 }),
+      el('path', { d:'M6.5 10l2.5 2.5 4.5-5', stroke:'currentColor', strokeWidth:1.6, strokeLinecap:'round', strokeLinejoin:'round' })
+    );
+    if (type === 'warning') return el('svg', { viewBox:'0 0 20 20', fill:'none', style:s },
+      el('path', { d:'M10 3.5L17.5 16.5h-15L10 3.5z', stroke:'currentColor', strokeWidth:1.6, strokeLinejoin:'round' }),
+      el('path', { d:'M10 9v4M10 14.5v.5', stroke:'currentColor', strokeWidth:1.8, strokeLinecap:'round' })
+    );
+    if (type === 'error') return el('svg', { viewBox:'0 0 20 20', fill:'none', style:s },
+      el('circle', { cx:10, cy:10, r:9, stroke:'currentColor', strokeWidth:1.6 }),
+      el('path', { d:'M10 6v5M10 13.5v.5', stroke:'currentColor', strokeWidth:1.8, strokeLinecap:'round' })
+    );
+    return el('svg', { viewBox:'0 0 20 20', fill:'none', style:s }, // info
+      el('circle', { cx:10, cy:10, r:9, stroke:'currentColor', strokeWidth:1.6 }),
+      el('path', { d:'M10 9v5M10 6.5v.5', stroke:'currentColor', strokeWidth:1.8, strokeLinecap:'round' })
+    );
+  }
+
+  // The actual Alert component (matches Figma + HTML demo exactly)
+  function Alert({ type='info', title='', description='', dismissible=false, onDismiss }) {
+    const [visible, setVisible] = useState(true);
+    if (!visible) return null;
+    const isDark = document.documentElement.classList.contains('dark');
+    const tok = TOKENS[type];
+    const bg     = isDark ? tok.darkBg     : tok.bg;
+    const border = isDark ? tok.darkBorder : tok.border;
+    const text   = isDark ? tok.darkText   : tok.text;
+    const bar    = isDark ? tok.darkBar    : tok.bar;
+
+    return el('div', {
+      role:'alert',
+      style:{ display:'flex', alignItems:'flex-start', gap:12, padding:'14px 16px',
+              background:bg, border:`1px solid ${border}`, borderRadius:8,
+              overflow:'hidden', position:'relative',
+              fontFamily:"'IBM Plex Sans', -apple-system, sans-serif" }
+    },
+      // left accent bar
+      el('div', { style:{ position:'absolute', left:0, top:0, bottom:0, width:4, background:bar, borderRadius:'2px 0 0 2px' } }),
+      // icon
+      el(Icon, { type, color:text }),
+      // body
+      el('div', { style:{ flex:1, minWidth:0, paddingLeft:2 } },
+        title       && el('div', { style:{ fontWeight:600, fontSize:14, color:text, marginBottom:3 } }, title),
+        description && el('div', { style:{ fontSize:13, lineHeight:1.65, color:text, opacity:.82 } }, description)
+      ),
+      // dismiss button
+      dismissible && el('button', {
+        'aria-label':'Dismiss',
+        onClick:() => { setVisible(false); onDismiss?.(); },
+        style:{ background:'none', border:'none', cursor:'pointer', color:text,
+                opacity:.55, flexShrink:0, display:'flex', alignItems:'center', padding:2, transition:'.12s' },
+        onMouseEnter:e => e.currentTarget.style.opacity=1,
+        onMouseLeave:e => e.currentTarget.style.opacity=.55,
+      },
+        el('svg', { viewBox:'0 0 16 16', fill:'none', width:14, height:14 },
+          el('path', { d:'M4 4l8 8M12 4l-8 8', stroke:'currentColor', strokeWidth:1.6, strokeLinecap:'round' })
+        )
+      )
+    );
+  }
+
+  // ── JSX code generator ──────────────────────────────────────────────────────
+  function buildJSX(type, title, desc, dismissible) {
+    const lines = ['<Alert'];
+    lines.push(`  type="${type}"`);
+    if (title)       lines.push(`  title="${title}"`);
+    if (desc)        lines.push(`  description="${desc}"`);
+    if (dismissible) lines.push(`  dismissible`);
+    lines.push('/>');
+    return lines.join('\n');
+  }
+
+  function syntaxHL(code) {
+    // Minimal JSX syntax highlighting
+    return code
+      .replace(/(&lt;|<)(\/?)(\w+)/g, (_, lt, sl, tag) =>
+        `${lt}${sl}<span class="pg-tok-tag">${tag}</span>`)
+      .replace(/(\w+)=/g, '<span class="pg-tok-attr">$1</span>=')
+      .replace(/("([^"]*)")/g, '<span class="pg-tok-str">$1</span>')
+      .replace(/\bdismissible\b(?!=)/g, '<span class="pg-tok-bool">dismissible</span>')
+      .replace(/(\/&gt;|&gt;|>)/g, '<span class="pg-tok-tag">$1</span>');
+  }
+
+  // ── Playground component ────────────────────────────────────────────────────
+  const TYPES = ['success', 'warning', 'error', 'info'];
+  const DEFAULTS = {
+    success: { title:'Changes saved',       desc:'Your design tokens have been published to all connected projects.' },
+    warning: { title:'Unsaved changes',     desc:'You have uncommitted token changes. Publish before deploying.' },
+    error:   { title:'Sync failed',         desc:'Could not connect to Figma API. Check your token and try again.' },
+    info:    { title:'Scheduled sync active', desc:'Tokens sync automatically every day at 02:00 UTC.' },
+  };
+
+  function AlertPlayground() {
+    const [type,        setType]        = useState('success');
+    const [dismissible, setDismissible] = useState(true);
+    const [title,       setTitle]       = useState(DEFAULTS.success.title);
+    const [desc,        setDesc]        = useState(DEFAULTS.success.desc);
+    const [key,         setKey]         = useState(0);
+    const [copied,      setCopied]      = useState(false);
+
+    function changeType(t) {
+      setType(t);
+      setTitle(DEFAULTS[t].title);
+      setDesc(DEFAULTS[t].desc);
+      setKey(k => k + 1);
+    }
+
+    const jsxCode = buildJSX(type, title, desc, dismissible);
+
+    function copyCode() {
+      navigator.clipboard.writeText(jsxCode).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      });
+    }
+
+    // ── Controls ──────────────────────────────────────────────────────────────
+    const controlsPanel = el('div', { className:'pg-controls' },
+      // Type
+      el('div', null,
+        el('span', { className:'pg-ctrl-label' }, 'Type'),
+        ...TYPES.map(t =>
+          el('button', {
+            key:t, className:`pg-ctrl-btn${type===t?' active':''}`,
+            onClick:() => changeType(t)
+          }, t.charAt(0).toUpperCase() + t.slice(1))
+        )
+      ),
+      // Dismissible
+      el('div', null,
+        el('span', { className:'pg-ctrl-label' }, 'Props'),
+        el('div', { className:'pg-toggle-row', style:{marginBottom:4} },
+          el('span', { style:{fontSize:13, color:'var(--text-2)'} }, 'dismissible'),
+          el('button', {
+            className:`pg-toggle ${dismissible ? 'on' : 'off'}`,
+            onClick:() => { setDismissible(d => !d); setKey(k => k+1); }
+          },
+            el('div', { className:'pg-toggle-knob' })
+          )
+        )
+      ),
+      // Title
+      el('div', null,
+        el('span', { className:'pg-ctrl-label' }, 'Title'),
+        el('input', {
+          type:'text', className:'pg-ctrl-input', value:title,
+          onChange:e => setTitle(e.target.value)
+        })
+      ),
+      // Description
+      el('div', null,
+        el('span', { className:'pg-ctrl-label' }, 'Description'),
+        el('textarea', {
+          className:'pg-ctrl-textarea', rows:3, value:desc,
+          onChange:e => setDesc(e.target.value)
+        })
+      )
+    );
+
+    // ── Preview ───────────────────────────────────────────────────────────────
+    const previewPanel = el('div', { className:'pg-preview-area' },
+      el('span', { className:'pg-preview-label' }, 'Preview'),
+      el('div', { className:'pg-preview-box' },
+        el(Alert, { key, type, title, description:desc, dismissible,
+                    onDismiss:() => setKey(k => k+1) })
+      ),
+      el('button', { className:'pg-reset-btn', onClick:() => setKey(k => k+1) },
+        '↺  Reset'
+      )
+    );
+
+    // ── Code ──────────────────────────────────────────────────────────────────
+    const codePanel = el('div', { className:'pg-code-wrap' },
+      el('div', { className:'pg-code-header' },
+        el('span', { className:'pg-code-lang' }, 'JSX'),
+        el('button', { className:'pg-code-copy', onClick:copyCode },
+          copied ? '✓ Copied' : 'Copy')
+      ),
+      el('pre', { className:'pg-code-pre' },
+        el('code', { dangerouslySetInnerHTML:{ __html: syntaxHL(
+          jsxCode
+            .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        ) } })
+      )
+    );
+
+    // ── Import hint ───────────────────────────────────────────────────────────
+    const importHint = el('div', { className:'pg-code-wrap', style:{marginTop:0} },
+      el('div', { className:'pg-code-header' },
+        el('span', { className:'pg-code-lang' }, 'Import')
+      ),
+      el('pre', { className:'pg-code-pre', style:{padding:'12px 20px'} },
+        el('code', { dangerouslySetInnerHTML:{ __html:
+          `<span class="pg-tok-comment">// Install from your components folder</span>\n` +
+          `<span class="pg-tok-attr">import</span> { Alert } <span class="pg-tok-attr">from</span> <span class="pg-tok-str">'@/components/Alert'</span>;`
+        } })
+      )
+    );
+
+    return el('div', { style:{display:'flex', flexDirection:'column', gap:20} },
+      el('div', { className:'pg-layout' }, controlsPanel, previewPanel),
+      importHint,
+      codePanel
+    );
+  }
+
+  // Mount when DOM is ready
+  function mountPlayground() {
+    const mountEl = document.getElementById('alert-playground-mount');
+    if (!mountEl) return;
+    const root = ReactDOM.createRoot(mountEl);
+    root.render(el(AlertPlayground));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountPlayground);
+  } else {
+    mountPlayground();
+  }
+})();
+</script>
+
 </body>
 </html>
