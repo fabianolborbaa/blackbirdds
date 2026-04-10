@@ -450,7 +450,95 @@ def main():
     script_block = build_token_script(primitives, semantic, spacing, typography, shadows)
     inject_into_html(script_block)
 
+    # ── Step 5: Regenerate tokens.css for Storybook / component use ──────────
+    print("5/5  Regenerating tokens.css…")
+    generate_tokens_css(primitives, semantic, spacing)
+
     print(f"\n✅  Sync complete!\n")
+
+
+# ── CSS token generator ──────────────────────────────────────────────────────
+
+CSS_FILE = Path(__file__).parent.parent / "components" / "tokens.css"
+
+CATEGORY_MAP = {
+    "bg": "Background", "background": "Background",
+    "text": "Text",
+    "border": "Border",
+    "accent": "Accent",
+    "success": "Success", "warning": "Warning",
+    "error": "Error", "info": "Info",
+}
+
+def _css_name(token_name: str) -> str:
+    """Convert 'color/bg/surface' → '--color-bg-surface'."""
+    return "--" + token_name.replace("/", "-")
+
+
+def generate_tokens_css(primitives: list, semantic: list, spacing: list) -> None:
+    """
+    Write components/tokens.css with:
+      - Primitive brand/gray palette as CSS custom props
+      - Semantic tokens in :root (Light) and @media dark
+      - Spacing scale
+      - Border-radius scale
+    """
+    lines = [
+        "/**",
+        " * BlackBirdDS — Design Tokens (auto-generated)",
+        " * Do not edit manually — run scripts/sync_from_figma.py to update.",
+        " */",
+        "",
+        "/* ── Primitive colors ─────────────────────────────────────────────── */",
+        ":root {",
+    ]
+    for p in primitives:
+        prop = "--" + p["name"].replace("/", "-")
+        lines.append(f"  {prop}: {p['hex']};")
+    lines += ["}", ""]
+
+    # ── Semantic tokens — split Light / Dark ──────────────────────────────────
+    light_lines = ["/* ── Semantic tokens — Light mode ──────────────────────────────── */", ":root {"]
+    dark_lines  = ["/* ── Semantic tokens — Dark mode ───────────────────────────────── */",
+                   "@media (prefers-color-scheme: dark) {", "  :root {"]
+
+    current_cat = None
+    for tok in semantic:
+        if tok.get("category") != current_cat:
+            current_cat = tok.get("category", "Other")
+            light_lines.append(f"\n  /* {current_cat} */")
+            dark_lines.append(f"\n    /* {current_cat} */")
+        prop = _css_name(tok["name"])
+        light_lines.append(f"  {prop}: {tok['light']};")
+        dark_lines.append(f"    {prop}: {tok['dark']};")
+
+    light_lines.append("}")
+    dark_lines  += ["  }", "}"]
+    lines += light_lines + [""] + dark_lines + [""]
+
+    # ── Spacing ───────────────────────────────────────────────────────────────
+    sp_tokens  = [t for t in spacing if "tracking" not in t.get("name","")]
+    rad_tokens = [t for t in spacing if t.get("collection","") == "Border Radius"]
+
+    if sp_tokens:
+        lines += ["/* ── Spacing scale ──────────────────────────────────────────────── */", ":root {"]
+        for t in sp_tokens:
+            prop = _css_name(t["name"])
+            val  = t.get("value", t.get("px", 0))
+            lines.append(f"  {prop}: {val}px;")
+        lines += ["}", ""]
+
+    if rad_tokens:
+        lines += ["/* ── Border radius ──────────────────────────────────────────────── */", ":root {"]
+        for t in rad_tokens:
+            prop = _css_name(t["name"])
+            val  = t.get("value", t.get("px", 0))
+            lines.append(f"  {prop}: {val}px;")
+        lines += ["}", ""]
+
+    CSS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    CSS_FILE.write_text("\n".join(lines), encoding="utf-8")
+    print(f"  ✅ Updated {CSS_FILE.name}  ({CSS_FILE.stat().st_size:,} bytes)")
 
 
 if __name__ == "__main__":
