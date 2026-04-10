@@ -12,14 +12,73 @@ window.DS = {"colors": [{"name": "black", "hex": "#000000", "group": "Primitives
 
 // Semantic tokens
 window.DS.semantic = [
-
+  {"name":"color/bg/surface",      "light":"#FFFFFF",  "dark":"#1E2939",  "category":"Background", "usage":"Default page & card background"},
+  {"name":"color/bg/secondary",    "light":"#F9FAFB",  "dark":"#1D293D",  "category":"Background", "usage":"Alternate row, sidebar, input fill"},
+  {"name":"color/bg/tertiary",     "light":"#F3F4F6",  "dark":"#314158",  "category":"Background", "usage":"Subtle hover states, skeleton loaders"},
+  {"name":"color/bg/inverse",      "light":"#101828",  "dark":"#F9FAFB",  "category":"Background", "usage":"Dark-on-light reversed surfaces"},
+  {"name":"color/bg/overlay",      "light":"rgba(16,24,40,0.48)",  "dark":"rgba(16,24,40,0.72)",  "category":"Background", "usage":"Modal scrim / backdrop"},
+  {"name":"color/text/primary",    "light":"#101828",  "dark":"#F9FAFB",  "category":"Text",       "usage":"Headings, body copy, labels"},
+  {"name":"color/text/secondary",  "light":"#4A5565",  "dark":"#90A1B9",  "category":"Text",       "usage":"Supporting text, metadata"},
+  {"name":"color/text/tertiary",   "light":"#6A7282",  "dark":"#62748E",  "category":"Text",       "usage":"Placeholder-adjacent, muted info"},
+  {"name":"color/text/disabled",   "light":"#D1D5DC",  "dark":"#45556C",  "category":"Text",       "usage":"Disabled inputs, unavailable actions"},
+  {"name":"color/text/inverse",    "light":"#FFFFFF",  "dark":"#101828",  "category":"Text",       "usage":"Text on dark / inverted backgrounds"},
+  {"name":"color/text/placeholder","light":"#99A1AF",  "dark":"#62748E",  "category":"Text",       "usage":"Form input placeholder text"},
+  {"name":"color/border/default",  "light":"#E5E7EB",  "dark":"#314158",  "category":"Border",     "usage":"Dividers, cards, input outlines"},
+  {"name":"color/border/strong",   "light":"#D1D5DC",  "dark":"#45556C",  "category":"Border",     "usage":"Emphasis borders, separators"},
+  {"name":"color/border/subtle",   "light":"#F3F4F6",  "dark":"#1D293D",  "category":"Border",     "usage":"Very light inner rules"},
+  {"name":"color/border/focus",    "light":"#155DFC",  "dark":"#2B7FFF",  "category":"Border",     "usage":"Keyboard-focus ring on interactive elements"},
+  {"name":"color/accent/default",  "light":"#155DFC",  "dark":"#2B7FFF",  "category":"Accent",     "usage":"Primary CTA, links, active indicators"},
+  {"name":"color/accent/hover",    "light":"#1447E6",  "dark":"#193CB8",  "category":"Accent",     "usage":"Hover state of accent elements"},
+  {"name":"color/accent/text",     "light":"#1447E6",  "dark":"#51A2FF",  "category":"Accent",     "usage":"Accent-coloured text on surfaces"},
+  {"name":"color/accent/soft",     "light":"#EEF6FF",  "dark":"#162455",  "category":"Accent",     "usage":"Low-emphasis accent fill (chips, tags)"},
+  {"name":"color/accent/muted",    "light":"#DBEAFE",  "dark":"#1C398E",  "category":"Accent",     "usage":"Selected rows, active backgrounds"},
+  {"name":"color/success/default", "light":"#00A63E",  "dark":"#00C950",  "category":"Success",    "usage":"Positive status icon & border"},
+  {"name":"color/success/text",    "light":"#008236",  "dark":"#05DF72",  "category":"Success",    "usage":"Success message text"},
+  {"name":"color/success/soft",    "light":"#F0FDF4",  "dark":"#032E15",  "category":"Success",    "usage":"Success alert / banner background"},
+  {"name":"color/success/border",  "light":"#B9F8CF",  "dark":"#016630",  "category":"Success",    "usage":"Success component border"},
+  {"name":"color/warning/default", "light":"#E17100",  "dark":"#FE9A00",  "category":"Warning",    "usage":"Caution icon, badge background"},
+  {"name":"color/warning/text",    "light":"#BB4D00",  "dark":"#FFD230",  "category":"Warning",    "usage":"Warning message text"},
+  {"name":"color/warning/soft",    "light":"#FFFBEB",  "dark":"#461901",  "category":"Warning",    "usage":"Warning alert background"},
+  {"name":"color/warning/border",  "light":"#FEE685",  "dark":"#973C00",  "category":"Warning",    "usage":"Warning component border"},
+  {"name":"color/error/default",   "light":"#E7000B",  "dark":"#FB2C36",  "category":"Error",      "usage":"Destructive action, error icon"},
+  {"name":"color/error/text",      "light":"#C10007",  "dark":"#FF6467",  "category":"Error",      "usage":"Error message, validation text"},
+  {"name":"color/error/soft",      "light":"#FEF2F2",  "dark":"#460809",  "category":"Error",      "usage":"Error alert background"},
+  {"name":"color/error/border",    "light":"#FFC9C9",  "dark":"#9F0712",  "category":"Error",      "usage":"Error input border, error card ring"},
+  {"name":"color/info/default",    "light":"#0084D1",  "dark":"#00A6F4",  "category":"Info",       "usage":"Informational icon & indicator"},
+  {"name":"color/info/text",       "light":"#0069A8",  "dark":"#74D4FF",  "category":"Info",       "usage":"Info message text"},
+  {"name":"color/info/soft",       "light":"#F0F9FF",  "dark":"#052F4A",  "category":"Info",       "usage":"Info alert / notification background"},
+  {"name":"color/info/border",     "light":"#B8E6FE",  "dark":"#00598A",  "category":"Info",       "usage":"Info component border"}
 ];
 
-// Spacing tokens
-window.DS.spacing = [];
+// Spacing tokens (includes letter-spacing/tracking tokens — filtered by name in render)
+window.DS.spacing = [
+  {"name":"spacing/1","value":1},{"name":"spacing/2","value":2},{"name":"spacing/4","value":4},
+  {"name":"spacing/6","value":6},{"name":"spacing/8","value":8},{"name":"spacing/10","value":10},
+  {"name":"spacing/12","value":12},{"name":"spacing/14","value":14},{"name":"spacing/16","value":16},
+  {"name":"spacing/20","value":20},{"name":"spacing/24","value":24},{"name":"spacing/28","value":28},
+  {"name":"spacing/32","value":32},{"name":"spacing/36","value":36},{"name":"spacing/40","value":40},
+  {"name":"spacing/44","value":44},{"name":"spacing/48","value":48},{"name":"spacing/56","value":56},
+  {"name":"spacing/64","value":64},{"name":"spacing/72","value":72},{"name":"spacing/80","value":80},
+  {"name":"spacing/96","value":96},{"name":"spacing/112","value":112},{"name":"spacing/128","value":128},
+  {"name":"spacing/160","value":160},{"name":"spacing/192","value":192},{"name":"spacing/256","value":256},
+  {"name":"spacing/320","value":320},{"name":"spacing/384","value":384},
+  {"name":"tracking-tighter","value":-0.8},{"name":"tracking-tight","value":-0.4},
+  {"name":"tracking-normal","value":0},{"name":"tracking-wide","value":0.4},
+  {"name":"tracking-wider","value":0.8},{"name":"tracking-widest","value":1.6}
+];
 
 // Border radius tokens
-window.DS.radius = [];
+window.DS.radius = [
+  {"name":"border-radius/rounded-0",    "value":0},
+  {"name":"border-radius/rounded-sm",   "value":2},
+  {"name":"border-radius/rounded",      "value":4},
+  {"name":"border-radius/rounded-md",   "value":6},
+  {"name":"border-radius/rounded-lg",   "value":8},
+  {"name":"border-radius/rounded-xl",   "value":12},
+  {"name":"border-radius/rounded-2xl",  "value":16},
+  {"name":"border-radius/rounded-3xl",  "value":24},
+  {"name":"border-radius/rounded-full", "value":9999}
+];
 
 // Letter spacing tokens
 window.DS.letterSpacing = [];
@@ -42,6 +101,44 @@ function switchTab(btn, panelId) {
 
 </script>
 <!-- FIGMA_TOKENS_END -->
+<script>
+// ── DATA COMPATIBILITY LAYER ─────────────────────────────────────────────────
+// Maps sync-script property names → render-code property names.
+// This block is intentionally outside the FIGMA_TOKENS_START/END markers so
+// the auto-sync never overwrites it.
+
+// typography → textStyles
+window.DS.textStyles = window.DS.typography || [];
+
+// radius → radii  (normalize .px → .value in case sync script uses px)
+window.DS.radii = (window.DS.radius || []).map(function(r){
+  return Object.assign({}, r, {value: r.value !== undefined ? r.value : (r.px || 0)});
+});
+
+// shadows (css strings) → effects ({name,x,y,blur,spread,color})
+window.DS.effects = (window.DS.shadows || []).map(function(s){
+  if (!s.css) return {name:s.name,x:0,y:4,blur:6,spread:0,color:'rgba(0,0,0,0.1)'};
+  var m = s.css.match(/([-\d.]+)px\s+([-\d.]+)px\s+([-\d.]+)px\s+([-\d.]+)px\s+(rgba?\([^)]+\))/);
+  if (!m) return {name:s.name,x:0,y:4,blur:6,spread:0,color:'rgba(0,0,0,0.1)'};
+  return {name:s.name,x:parseFloat(m[1]),y:parseFloat(m[2]),blur:parseFloat(m[3]),spread:parseFloat(m[4]),color:m[5]};
+});
+
+// Normalize spacing .px → .value (in case a future sync uses px key)
+window.DS.spacing = (window.DS.spacing || []).map(function(s){
+  return Object.assign({}, s, {value: s.value !== undefined ? s.value : (s.px || 0)});
+});
+
+// Static grids (1–12 columns)
+window.DS.grids = [
+  {name:'1-col',  cols:1,  gutter:32, margin:24},
+  {name:'2-col',  cols:2,  gutter:24, margin:24},
+  {name:'3-col',  cols:3,  gutter:16, margin:24},
+  {name:'4-col',  cols:4,  gutter:16, margin:24},
+  {name:'6-col',  cols:6,  gutter:16, margin:24},
+  {name:'8-col',  cols:8,  gutter:12, margin:16},
+  {name:'12-col', cols:12, gutter:8,  margin:16}
+];
+</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -464,37 +561,49 @@ html.dark .bb-input-field-disabled { background: #22222f; border-color: rgba(255
 
 /* ── Alerts ──────────────────────────────────────────────────────────────── */
 .bb-alert {
-  display:flex; align-items:flex-start; gap:12px;
+  display:flex; align-items:flex-start; gap:12px; overflow:hidden;
   padding:14px 16px; border-radius:8px; border:1px solid transparent;
   font-size:14px; line-height:1.5;
 }
-.bb-alert-icon {
-  width:20px; height:20px; border-radius:50%; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; color:#fff; margin-top:1px;
+/* Accent bar (left edge) */
+.bb-alert-bar {
+  width:4px; min-height:100%; border-radius:2px; flex-shrink:0;
+  margin:-14px -4px -14px -16px; align-self:stretch;
 }
-.bb-alert-body { flex:1; }
-.bb-alert-title { font-weight:600; margin-bottom:2px; }
-.bb-alert-desc { font-size:13px; opacity:.85; }
+/* SVG icon */
+.bb-alert-svg {
+  width:18px; height:18px; flex-shrink:0; margin-top:2px;
+}
+.bb-alert-body { flex:1; min-width:0; }
+.bb-alert-title { font-weight:600; font-size:14px; margin-bottom:3px; }
+.bb-alert-desc { font-size:13px; line-height:1.6; opacity:.82; }
 .bb-alert-close {
-  background:none; border:none; cursor:pointer; font-size:18px;
-  line-height:1; padding:0; opacity:.7; flex-shrink:0;
+  background:none; border:none; cursor:pointer; padding:2px;
+  opacity:.55; flex-shrink:0; display:flex; align-items:center; transition:.1s;
 }
 .bb-alert-close:hover { opacity:1; }
-.bb-alert-success { background:#F0FDF4; border-color:#B9F8CF; }
-.bb-alert-success .bb-alert-icon { background:#008236; }
+
+/* Success */
+.bb-alert-success { background:#F0FDF4; border-color:#B9F8CF; color:#008236; }
+.bb-alert-success .bb-alert-bar   { background:#00A63E; }
 .bb-alert-success .bb-alert-title { color:#008236; }
 .bb-alert-success .bb-alert-close { color:#008236; }
-.bb-alert-warning { background:#FFFBEB; border-color:#FEE685; }
-.bb-alert-warning .bb-alert-icon { background:#BB4D00; }
+
+/* Warning */
+.bb-alert-warning { background:#FFFBEB; border-color:#FEE685; color:#BB4D00; }
+.bb-alert-warning .bb-alert-bar   { background:#E17100; }
 .bb-alert-warning .bb-alert-title { color:#BB4D00; }
 .bb-alert-warning .bb-alert-close { color:#BB4D00; }
-.bb-alert-error { background:#FEF2F2; border-color:#FFC9C9; }
-.bb-alert-error .bb-alert-icon { background:#C10007; }
+
+/* Error */
+.bb-alert-error { background:#FEF2F2; border-color:#FFC9C9; color:#C10007; }
+.bb-alert-error .bb-alert-bar   { background:#E7000B; }
 .bb-alert-error .bb-alert-title { color:#C10007; }
 .bb-alert-error .bb-alert-close { color:#C10007; }
-.bb-alert-info { background:#F0F9FF; border-color:#B8E6FE; }
-.bb-alert-info .bb-alert-icon { background:#0069A8; }
+
+/* Info */
+.bb-alert-info { background:#F0F9FF; border-color:#B8E6FE; color:#0069A8; }
+.bb-alert-info .bb-alert-bar   { background:#0084D1; }
 .bb-alert-info .bb-alert-title { color:#0069A8; }
 .bb-alert-info .bb-alert-close { color:#0069A8; }
 
@@ -539,6 +648,133 @@ html.dark .bb-alert-warning { background:#461901; border-color:#973C00; }
 html.dark .bb-alert-error   { background:#460809; border-color:#9F0712; }
 html.dark .bb-alert-info    { background:#052F4A; border-color:#00598A; }
 html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
+
+/* ── COMPONENT PAGE HEADER ───────────────────────────────────────────────── */
+.page-title-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.page-title-row .page-title { margin-bottom:0; }
+
+/* ── COMPONENT STATUS BADGES ─────────────────────────────────────────────── */
+.badge { display:inline-flex; align-items:center; font-size:11px; font-weight:600;
+  padding:3px 10px; border-radius:20px; border:1.5px solid; letter-spacing:.02em; }
+.badge-stable     { background:#EEF6FF; color:#155DFC; border-color:#BEDBFF; }
+.badge-beta       { background:#FFFBEB; color:#BB4D00; border-color:#FEE685; }
+.badge-deprecated { background:#FEF2F2; color:#C10007; border-color:#FFC9C9; }
+.badge-new        { background:#F0FDF4; color:#008236; border-color:#B9F8CF; }
+
+/* ── COMPONENT TAB NAV ────────────────────────────────────────────────────── */
+.comp-tabs-nav {
+  display:flex; gap:0; border-bottom:1px solid var(--border);
+  margin-bottom:28px; margin-top:4px;
+}
+.comp-tabs-nav .comp-tab { padding:10px 18px; }
+
+/* ── DEMO BLOCKS ─────────────────────────────────────────────────────────── */
+.demo-block {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:12px; padding:28px 24px;
+}
+.demo-label {
+  font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text-4); margin-bottom:16px;
+}
+.demo-sublabel { font-size:11px; color:var(--text-4); margin-bottom:8px; }
+
+/* ── PROPS / TOKEN TABLE (new .props-table class) ────────────────────────── */
+.props-table {
+  width:100%; border-collapse:collapse; font-size:13px;
+  margin-top:0; border-radius:10px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.props-table thead { background:var(--bg-2); }
+.props-table th {
+  text-align:left; padding:10px 14px;
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--text-4); border-bottom:2px solid var(--border);
+}
+.props-table td {
+  padding:11px 14px; border-bottom:1px solid var(--border);
+  vertical-align:middle; color:var(--text-2); line-height:1.5;
+}
+.props-table tr:last-child td { border-bottom:none; }
+.props-table tr:hover td { background:rgba(21,93,252,.03); }
+.props-table code {
+  font-family:var(--mono); font-size:12px; padding:2px 6px;
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:5px; color:var(--text-1); white-space:nowrap;
+}
+/* token swatch chip in token tables */
+.tok-swatch {
+  display:inline-block; width:14px; height:14px; border-radius:3px;
+  border:1px solid rgba(0,0,0,.1); vertical-align:middle; margin-right:6px;
+  flex-shrink:0;
+}
+.tok-cell { display:flex; align-items:center; gap:4px; }
+
+/* ── GUIDELINES GRID ─────────────────────────────────────────────────────── */
+.guidelines-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:8px;
+}
+@media(max-width:640px){ .guidelines-grid{ grid-template-columns:1fr; } }
+
+.guideline-card {
+  border-radius:10px; padding:20px; border:1.5px solid;
+}
+.guideline-card.do {
+  background:#F0FDF4; border-color:#B9F8CF;
+}
+.guideline-card.dont {
+  background:#FEF2F2; border-color:#FFC9C9;
+}
+.guideline-label {
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  margin-bottom:10px;
+}
+.guideline-card.do   .guideline-label { color:#008236; }
+.guideline-card.dont .guideline-label { color:#C10007; }
+.guideline-card p {
+  font-size:13px; line-height:1.7; color:var(--text-1); margin:0;
+}
+.guideline-card strong { color:inherit; }
+
+/* ── ACCESSIBILITY BLOCK ─────────────────────────────────────────────────── */
+.a11y-block {
+  background:var(--bg-2); border:1px solid var(--border); border-radius:10px;
+  padding:20px 24px; margin-top:16px;
+}
+.a11y-block h4 {
+  font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--accent); margin-bottom:10px;
+}
+.a11y-block p { font-size:13px; line-height:1.8; color:var(--text-2); margin:0; }
+.a11y-block code {
+  font-family:var(--mono); font-size:12px; padding:1px 5px;
+  background:var(--bg); border:1px solid var(--border); border-radius:4px;
+  color:var(--text-1);
+}
+
+/* ── CALENDAR REFINEMENTS ────────────────────────────────────────────────── */
+.bb-cal { width:280px; }
+.bb-cal-header span { font-size:14px; font-weight:600; color:var(--text-1); }
+.bb-cal-day { border-radius:6px; font-size:13px; cursor:pointer; font-weight:400; }
+.bb-cal-day.empty { opacity:.38; cursor:default; }
+.bb-cal-weekdays span { font-size:11px; font-weight:600; color:var(--text-3); letter-spacing:.04em; }
+
+/* dark mode for new component UI */
+html.dark .badge-stable     { background:#162455; color:#51A2FF; border-color:#193CB8; }
+html.dark .demo-block        { background:#1a1a2a; border-color:rgba(255,255,255,.08); }
+html.dark .props-table       { border-color:rgba(255,255,255,.08); }
+html.dark .props-table thead { background:#1d1d2e; }
+html.dark .props-table th    { border-bottom-color:rgba(255,255,255,.08); color:#62748E; }
+html.dark .props-table td    { border-bottom-color:rgba(255,255,255,.06); }
+html.dark .props-table code  { background:#22222f; border-color:rgba(255,255,255,.1); }
+html.dark .props-table tr:hover td { background:rgba(43,127,255,.04); }
+html.dark .guideline-card.do   { background:#032E15; border-color:#016630; }
+html.dark .guideline-card.dont { background:#460809; border-color:#9F0712; }
+html.dark .a11y-block  { background:#1d1d2e; border-color:rgba(255,255,255,.08); }
+html.dark .a11y-block code { background:#22222f; border-color:rgba(255,255,255,.1); }
+html.dark .bb-cal-weekdays span { color:#62748E; }
+html.dark .bb-cal-day.today { background:#101828; color:#fff; }
+
 
 </style>
 </head>
@@ -1490,12 +1726,12 @@ html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
     <table class="props-table">
       <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
       <tbody>
-        <tr><td><code>color/text/secondary</code></td><td>Default tab label</td><td>#4A5565</td><td>#94A3B8</td></tr>
-        <tr><td><code>color/text/primary</code></td><td>Hover tab label</td><td>#101828</td><td>#F9FAFB</td></tr>
-        <tr><td><code>color/accent/default</code></td><td>Active label + indicator</td><td>#155DFC</td><td>#2B7FFF</td></tr>
-        <tr><td><code>color/text/disabled</code></td><td>Disabled tab label</td><td>#D1D5DC</td><td>#333E4F</td></tr>
-        <tr><td><code>color/bg/secondary</code></td><td>Hover background</td><td>#F9FAFB</td><td>#1A1A24</td></tr>
-        <tr><td><code>color/border/default</code></td><td>Tab bar bottom border</td><td>#E5E7EB</td><td>rgba(255,255,255,.08)</td></tr>
+        <tr><td><code>color/text/secondary</code></td><td>Default tab label</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#4A5565"></span>#4A5565</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#94A3B8"></span>#94A3B8</div></td></tr>
+        <tr><td><code>color/text/primary</code></td><td>Hover tab label</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#101828"></span>#101828</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F9FAFB;border-color:rgba(0,0,0,.15)"></span>#F9FAFB</div></td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Active label + indicator</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#155DFC"></span>#155DFC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#2B7FFF"></span>#2B7FFF</div></td></tr>
+        <tr><td><code>color/text/disabled</code></td><td>Disabled tab label</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#D1D5DC"></span>#D1D5DC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#333E4F"></span>#333E4F</div></td></tr>
+        <tr><td><code>color/bg/secondary</code></td><td>Hover background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F9FAFB;border-color:rgba(0,0,0,.15)"></span>#F9FAFB</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#1A1A24"></span>#1A1A24</div></td></tr>
+        <tr><td><code>color/border/default</code></td><td>Tab bar bottom border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#E5E7EB"></span>#E5E7EB</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#314158"></span>#314158</div></td></tr>
       </tbody>
     </table>
   </div>
@@ -1552,33 +1788,43 @@ html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
 
   <!-- Demo -->
   <div id="alerts-demo" class="comp-tab-panel active">
-    <div class="demo-block" style="display:flex;flex-direction:column;gap:12px;">
+    <div class="demo-block" style="display:flex;flex-direction:column;gap:10px;">
       <div class="bb-alert bb-alert-success">
-        <div class="bb-alert-icon">✓</div>
+        <div class="bb-alert-bar"></div>
+        <svg class="bb-alert-svg" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="bb-alert-body">
           <div class="bb-alert-title">Changes saved successfully</div>
           <div class="bb-alert-desc">Your design tokens have been published to all connected projects.</div>
         </div>
-        <button class="bb-alert-close">×</button>
+        <button class="bb-alert-close" aria-label="Dismiss">
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
       </div>
       <div class="bb-alert bb-alert-warning">
-        <div class="bb-alert-icon">⚠</div>
+        <div class="bb-alert-bar"></div>
+        <svg class="bb-alert-svg" viewBox="0 0 20 20" fill="none"><path d="M10 3L18 17H2L10 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 9v4M10 14.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div class="bb-alert-body">
           <div class="bb-alert-title">Unsaved changes detected</div>
           <div class="bb-alert-desc">You have uncommitted token changes. Publish before deploying.</div>
         </div>
-        <button class="bb-alert-close">×</button>
+        <button class="bb-alert-close" aria-label="Dismiss">
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
       </div>
       <div class="bb-alert bb-alert-error">
-        <div class="bb-alert-icon">✕</div>
+        <div class="bb-alert-bar"></div>
+        <svg class="bb-alert-svg" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v5M10 13.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div class="bb-alert-body">
           <div class="bb-alert-title">Sync failed</div>
           <div class="bb-alert-desc">Could not connect to Figma API. Check your token and try again.</div>
         </div>
-        <button class="bb-alert-close">×</button>
+        <button class="bb-alert-close" aria-label="Dismiss">
+          <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
       </div>
       <div class="bb-alert bb-alert-info">
-        <div class="bb-alert-icon">ℹ</div>
+        <div class="bb-alert-bar"></div>
+        <svg class="bb-alert-svg" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v5M10 6.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div class="bb-alert-body">
           <div class="bb-alert-title">Scheduled sync active</div>
           <div class="bb-alert-desc">Tokens sync automatically every day at 02:00 UTC.</div>
@@ -1607,18 +1853,22 @@ html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
     <table class="props-table">
       <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
       <tbody>
-        <tr><td><code>color/semantic/success/bg</code></td><td>Success background</td><td>#F0FDF4</td><td>#032E15</td></tr>
-        <tr><td><code>color/semantic/success/text</code></td><td>Success title + icon</td><td>#008236</td><td>#7BF1A8</td></tr>
-        <tr><td><code>color/semantic/success/border</code></td><td>Success border</td><td>#B9F8CF</td><td>#016630</td></tr>
-        <tr><td><code>color/semantic/warning/bg</code></td><td>Warning background</td><td>#FFFBEB</td><td>#461901</td></tr>
-        <tr><td><code>color/semantic/warning/text</code></td><td>Warning title + icon</td><td>#BB4D00</td><td>#FFD230</td></tr>
-        <tr><td><code>color/semantic/warning/border</code></td><td>Warning border</td><td>#FEE685</td><td>#973C00</td></tr>
-        <tr><td><code>color/semantic/error/bg</code></td><td>Error background</td><td>#FEF2F2</td><td>#460809</td></tr>
-        <tr><td><code>color/semantic/error/text</code></td><td>Error title + icon</td><td>#C10007</td><td>#FFA2A2</td></tr>
-        <tr><td><code>color/semantic/error/border</code></td><td>Error border</td><td>#FFC9C9</td><td>#9F0712</td></tr>
-        <tr><td><code>color/semantic/info/bg</code></td><td>Info background</td><td>#F0F9FF</td><td>#052F4A</td></tr>
-        <tr><td><code>color/semantic/info/text</code></td><td>Info title + icon</td><td>#0069A8</td><td>#74D4FF</td></tr>
-        <tr><td><code>color/semantic/info/border</code></td><td>Info border</td><td>#B8E6FE</td><td>#00598A</td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Success</td></tr>
+        <tr><td><code>color/success/soft</code></td><td>Success background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F0FDF4;border-color:rgba(0,0,0,.12)"></span>#F0FDF4</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#032E15"></span>#032E15</div></td></tr>
+        <tr><td><code>color/success/text</code></td><td>Title, icon &amp; accent bar</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#008236"></span>#008236</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#7BF1A8"></span>#7BF1A8</div></td></tr>
+        <tr><td><code>color/success/border</code></td><td>Card border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#B9F8CF"></span>#B9F8CF</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#016630"></span>#016630</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Warning</td></tr>
+        <tr><td><code>color/warning/soft</code></td><td>Warning background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFFBEB;border-color:rgba(0,0,0,.1)"></span>#FFFBEB</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#461901"></span>#461901</div></td></tr>
+        <tr><td><code>color/warning/text</code></td><td>Title, icon &amp; accent bar</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#BB4D00"></span>#BB4D00</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFD230"></span>#FFD230</div></td></tr>
+        <tr><td><code>color/warning/border</code></td><td>Card border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FEE685"></span>#FEE685</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#973C00"></span>#973C00</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Error</td></tr>
+        <tr><td><code>color/error/soft</code></td><td>Error background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FEF2F2;border-color:rgba(0,0,0,.1)"></span>#FEF2F2</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#460809"></span>#460809</div></td></tr>
+        <tr><td><code>color/error/text</code></td><td>Title, icon &amp; accent bar</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#C10007"></span>#C10007</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFA2A2"></span>#FFA2A2</div></td></tr>
+        <tr><td><code>color/error/border</code></td><td>Card border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFC9C9"></span>#FFC9C9</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#9F0712"></span>#9F0712</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Info</td></tr>
+        <tr><td><code>color/info/soft</code></td><td>Info background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F0F9FF;border-color:rgba(0,0,0,.1)"></span>#F0F9FF</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#052F4A"></span>#052F4A</div></td></tr>
+        <tr><td><code>color/info/text</code></td><td>Title, icon &amp; accent bar</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#0069A8"></span>#0069A8</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#74D4FF"></span>#74D4FF</div></td></tr>
+        <tr><td><code>color/info/border</code></td><td>Card border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#B8E6FE"></span>#B8E6FE</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#00598A"></span>#00598A</div></td></tr>
       </tbody>
     </table>
   </div>
@@ -1758,25 +2008,24 @@ html.dark .bb-cal { background:#1D293D; border-color:rgba(255,255,255,0.08); }
     <table class="props-table">
       <thead><tr><th>Token</th><th>Role</th><th>Light</th><th>Dark</th></tr></thead>
       <tbody>
-        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">DEFAULT STATE</td></tr>
-        <tr><td><code>color/surface/default</code></td><td>Day cell background</td><td>#FFFFFF</td><td>#1D293D</td></tr>
-        <tr><td><code>color/border/default</code></td><td>Day cell + container border</td><td>#E5E7EB</td><td>rgba(255,255,255,.08)</td></tr>
-        <tr><td><code>color/text/primary</code></td><td>Default day number</td><td>#101828</td><td>#F9FAFB</td></tr>
-        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">TODAY STATE</td></tr>
-        <tr><td><code>color/bg/inverse</code></td><td>Today cell background</td><td>#101828</td><td>#FFFFFF</td></tr>
-        <tr><td><code>color/accent/default</code></td><td>Today cell border ring</td><td>#155DFC</td><td>#2B7FFF</td></tr>
-        <tr><td><code>color/text/inverse</code></td><td>Today day number</td><td>#FFFFFF</td><td>#101828</td></tr>
-        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">SELECTED STATE</td></tr>
-        <tr><td><code>colors/brand/050</code></td><td>Selected cell background</td><td>#EEF6FF</td><td>#EEF6FF</td></tr>
-        <tr><td><code>color/border/focus</code></td><td>Selected cell border</td><td>#155DFC</td><td>#51A2FF</td></tr>
-        <tr><td><code>color/accent/text</code></td><td>Selected day number</td><td>#1447E6</td><td>#8EC5FF</td></tr>
-        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">DISABLED &amp; EVENTS</td></tr>
-        <tr><td><code>color/text/disabled</code></td><td>Disabled day number</td><td>#D1D5DC</td><td>#333E4F</td></tr>
-        <tr><td><code>color/accent/default</code></td><td>Event indicator dot</td><td>#155DFC</td><td>#2B7FFF</td></tr>
-        <tr><td><code>color/text/inverse</code></td><td>Event dot on Today (dark bg)</td><td>#FFFFFF</td><td>#101828</td></tr>
-        <tr><td colspan="4" style="background:var(--color-bg-secondary,#F9FAFB);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--color-text-tertiary,#9898b0);padding:6px 12px">INTERACTION</td></tr>
-        <tr><td><code>color/bg/tertiary</code></td><td>Hover day background</td><td>#F3F4F6</td><td>#22222F</td></tr>
-        <tr><td><code>color/text/secondary</code></td><td>Weekday labels, nav arrows</td><td>#4A5565</td><td>#94A3B8</td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Default State</td></tr>
+        <tr><td><code>color/bg/surface</code></td><td>Day cell + container background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.12)"></span>#FFFFFF</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#1E2939"></span>#1E2939</div></td></tr>
+        <tr><td><code>color/border/default</code></td><td>Cell border &amp; container border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#E5E7EB"></span>#E5E7EB</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#314158"></span>#314158</div></td></tr>
+        <tr><td><code>color/text/primary</code></td><td>Default day number</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#101828"></span>#101828</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F9FAFB;border-color:rgba(0,0,0,.12)"></span>#F9FAFB</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Today State</td></tr>
+        <tr><td><code>color/bg/inverse</code></td><td>Today cell background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#101828"></span>#101828</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F9FAFB;border-color:rgba(0,0,0,.12)"></span>#F9FAFB</div></td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Today cell border ring</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#155DFC"></span>#155DFC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#2B7FFF"></span>#2B7FFF</div></td></tr>
+        <tr><td><code>color/text/inverse</code></td><td>Today day number</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#FFFFFF;border-color:rgba(0,0,0,.12)"></span>#FFFFFF</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#101828"></span>#101828</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Selected State</td></tr>
+        <tr><td><code>colors/brand/050</code></td><td>Selected cell background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#EEF6FF"></span>#EEF6FF</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#162455"></span>#162455</div></td></tr>
+        <tr><td><code>color/border/focus</code></td><td>Selected cell border</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#155DFC"></span>#155DFC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#51A2FF"></span>#51A2FF</div></td></tr>
+        <tr><td><code>color/accent/text</code></td><td>Selected day number</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#1447E6"></span>#1447E6</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#8EC5FF"></span>#8EC5FF</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Disabled &amp; Events</td></tr>
+        <tr><td><code>color/text/disabled</code></td><td>Disabled &amp; out-of-month day number</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#D1D5DC"></span>#D1D5DC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#333E4F"></span>#333E4F</div></td></tr>
+        <tr><td><code>color/accent/default</code></td><td>Event indicator dot</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#155DFC"></span>#155DFC</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#2B7FFF"></span>#2B7FFF</div></td></tr>
+        <tr><td colspan="4" style="background:var(--bg-2);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text-4);padding:8px 14px;text-transform:uppercase">Interaction</td></tr>
+        <tr><td><code>color/bg/tertiary</code></td><td>Hover day background</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#F3F4F6;border-color:rgba(0,0,0,.1)"></span>#F3F4F6</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#314158"></span>#314158</div></td></tr>
+        <tr><td><code>color/text/secondary</code></td><td>Weekday labels &amp; nav arrows</td><td><div class="tok-cell"><span class="tok-swatch" style="background:#4A5565"></span>#4A5565</div></td><td><div class="tok-cell"><span class="tok-swatch" style="background:#94A3B8"></span>#94A3B8</div></td></tr>
       </tbody>
     </table>
   </div>

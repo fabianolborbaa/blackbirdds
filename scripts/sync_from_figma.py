@@ -294,28 +294,23 @@ def build_token_script(primitives, semantic, spacing, typography, shadows) -> st
     ls_tokens      = [t for t in spacing if isinstance(t, dict) and t.get("collection") == "Letter Spacing"]
 
     colors_json  = json.dumps(primitives, ensure_ascii=False)
-    spacing_json = json.dumps(spacing_tokens, ensure_ascii=False)
-    radius_json  = json.dumps(radius_tokens, ensure_ascii=False)
-    ls_json      = json.dumps(ls_tokens, ensure_ascii=False)
+    spacing_json = json.dumps(
+        [{"name": t["name"], "value": t.get("px", t.get("value", 0))} for t in spacing_tokens],
+        ensure_ascii=False
+    )
+    radius_json  = json.dumps(
+        [{"name": t["name"], "value": t.get("px", t.get("value", 0))} for t in radius_tokens],
+        ensure_ascii=False
+    )
+    ls_json      = json.dumps(
+        [{"name": t["name"], "value": t.get("px", t.get("value", 0))} for t in ls_tokens],
+        ensure_ascii=False
+    )
     typo_json    = json.dumps(typography, ensure_ascii=False)
     shadows_json = json.dumps(shadows, ensure_ascii=False)
 
-    # Semantic tokens as inline JS array (preserves multi-line readability)
-    semantic_lines = []
-    current_cat = None
-    for tok in semantic:
-        if tok["category"] != current_cat:
-            current_cat = tok["category"]
-            semantic_lines.append(f"  // {current_cat}")
-        light = tok['light']
-        dark  = tok['dark']
-        usage = tok['usage']
-        name  = tok['name']
-        pad   = max(1, 36 - len(name))
-        semantic_lines.append(
-            f'  {{name:"{name}",{" "*pad}light:"{light}",   dark:"{dark}",  category:"{tok["category"]}", usage:"{usage}"}},'
-        )
-    semantic_str = "[\n" + "\n".join(semantic_lines) + "\n]"
+    # Semantic tokens as clean JSON so load_fallback_data() can parse it reliably
+    semantic_str = json.dumps(semantic, ensure_ascii=False, indent=2)
 
     script = f"""<script>
 window.DS = {{"colors": {colors_json}}};
@@ -366,24 +361,39 @@ def load_fallback_data() -> tuple[list, list, list]:
     """
     If the Figma variables API is unavailable, return the existing token data
     embedded in the current HTML file so the script doesn't wipe everything.
+    Reads each window.DS.xxx assignment separately (they are separate JS statements).
     """
     print("  Using existing token data as fallback (no changes to colors/spacing).")
     html = DOCS_FILE.read_text(encoding="utf-8")
 
-    # Extract existing window.DS JSON
-    match = re.search(r'window\.DS\s*=\s*(\{.*?\});', html, re.DOTALL)
-    if match:
+    def extract_json_array(pattern: str) -> list:
+        m = re.search(pattern, html, re.DOTALL)
+        if not m:
+            return []
+        raw = m.group(1).strip()
+        # Strip single-line JS comments before parsing
+        raw = re.sub(r'//[^\n]*', '', raw)
         try:
-            existing = json.loads(match.group(1))
-            return (
-                existing.get("colors", []),
-                existing.get("semantic", []),
-                existing.get("spacing", []),
-            )
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return []
+
+    # Colors come from the main window.DS = {"colors": [...]} assignment
+    colors: list = []
+    main_match = re.search(r'window\.DS\s*=\s*(\{.*?\});', html, re.DOTALL)
+    if main_match:
+        try:
+            existing = json.loads(main_match.group(1))
+            colors = existing.get("colors", [])
         except json.JSONDecodeError:
             pass
 
-    return [], [], []
+    # Semantic, spacing, radius are separate window.DS.xxx = [...] assignments
+    semantic = extract_json_array(r'window\.DS\.semantic\s*=\s*(\[.*?\]);')
+    spacing  = extract_json_array(r'window\.DS\.spacing\s*=\s*(\[.*?\]);')
+
+    print(f"  Fallback: {len(colors)} colors, {len(semantic)} semantic tokens, {len(spacing)} spacing tokens")
+    return colors, semantic, spacing
 
 
 # ── Main ────────────────────────────────────────────────────────────────────────
