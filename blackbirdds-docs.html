@@ -12,73 +12,265 @@ window.DS = {"colors": [{"name": "black", "hex": "#000000", "group": "Primitives
 
 // Semantic tokens
 window.DS.semantic = [
-  {"name":"color/bg/surface",      "light":"#FFFFFF",  "dark":"#1E2939",  "category":"Background", "usage":"Default page & card background"},
-  {"name":"color/bg/secondary",    "light":"#F9FAFB",  "dark":"#1D293D",  "category":"Background", "usage":"Alternate row, sidebar, input fill"},
-  {"name":"color/bg/tertiary",     "light":"#F3F4F6",  "dark":"#314158",  "category":"Background", "usage":"Subtle hover states, skeleton loaders"},
-  {"name":"color/bg/inverse",      "light":"#101828",  "dark":"#F9FAFB",  "category":"Background", "usage":"Dark-on-light reversed surfaces"},
-  {"name":"color/bg/overlay",      "light":"rgba(16,24,40,0.48)",  "dark":"rgba(16,24,40,0.72)",  "category":"Background", "usage":"Modal scrim / backdrop"},
-  {"name":"color/text/primary",    "light":"#101828",  "dark":"#F9FAFB",  "category":"Text",       "usage":"Headings, body copy, labels"},
-  {"name":"color/text/secondary",  "light":"#4A5565",  "dark":"#90A1B9",  "category":"Text",       "usage":"Supporting text, metadata"},
-  {"name":"color/text/tertiary",   "light":"#6A7282",  "dark":"#62748E",  "category":"Text",       "usage":"Placeholder-adjacent, muted info"},
-  {"name":"color/text/disabled",   "light":"#D1D5DC",  "dark":"#45556C",  "category":"Text",       "usage":"Disabled inputs, unavailable actions"},
-  {"name":"color/text/inverse",    "light":"#FFFFFF",  "dark":"#101828",  "category":"Text",       "usage":"Text on dark / inverted backgrounds"},
-  {"name":"color/text/placeholder","light":"#99A1AF",  "dark":"#62748E",  "category":"Text",       "usage":"Form input placeholder text"},
-  {"name":"color/border/default",  "light":"#E5E7EB",  "dark":"#314158",  "category":"Border",     "usage":"Dividers, cards, input outlines"},
-  {"name":"color/border/strong",   "light":"#D1D5DC",  "dark":"#45556C",  "category":"Border",     "usage":"Emphasis borders, separators"},
-  {"name":"color/border/subtle",   "light":"#F3F4F6",  "dark":"#1D293D",  "category":"Border",     "usage":"Very light inner rules"},
-  {"name":"color/border/focus",    "light":"#155DFC",  "dark":"#2B7FFF",  "category":"Border",     "usage":"Keyboard-focus ring on interactive elements"},
-  {"name":"color/accent/default",  "light":"#155DFC",  "dark":"#2B7FFF",  "category":"Accent",     "usage":"Primary CTA, links, active indicators"},
-  {"name":"color/accent/hover",    "light":"#1447E6",  "dark":"#193CB8",  "category":"Accent",     "usage":"Hover state of accent elements"},
-  {"name":"color/accent/text",     "light":"#1447E6",  "dark":"#51A2FF",  "category":"Accent",     "usage":"Accent-coloured text on surfaces"},
-  {"name":"color/accent/soft",     "light":"#EEF6FF",  "dark":"#162455",  "category":"Accent",     "usage":"Low-emphasis accent fill (chips, tags)"},
-  {"name":"color/accent/muted",    "light":"#DBEAFE",  "dark":"#1C398E",  "category":"Accent",     "usage":"Selected rows, active backgrounds"},
-  {"name":"color/success/default", "light":"#00A63E",  "dark":"#00C950",  "category":"Success",    "usage":"Positive status icon & border"},
-  {"name":"color/success/text",    "light":"#008236",  "dark":"#05DF72",  "category":"Success",    "usage":"Success message text"},
-  {"name":"color/success/soft",    "light":"#F0FDF4",  "dark":"#032E15",  "category":"Success",    "usage":"Success alert / banner background"},
-  {"name":"color/success/border",  "light":"#B9F8CF",  "dark":"#016630",  "category":"Success",    "usage":"Success component border"},
-  {"name":"color/warning/default", "light":"#E17100",  "dark":"#FE9A00",  "category":"Warning",    "usage":"Caution icon, badge background"},
-  {"name":"color/warning/text",    "light":"#BB4D00",  "dark":"#FFD230",  "category":"Warning",    "usage":"Warning message text"},
-  {"name":"color/warning/soft",    "light":"#FFFBEB",  "dark":"#461901",  "category":"Warning",    "usage":"Warning alert background"},
-  {"name":"color/warning/border",  "light":"#FEE685",  "dark":"#973C00",  "category":"Warning",    "usage":"Warning component border"},
-  {"name":"color/error/default",   "light":"#E7000B",  "dark":"#FB2C36",  "category":"Error",      "usage":"Destructive action, error icon"},
-  {"name":"color/error/text",      "light":"#C10007",  "dark":"#FF6467",  "category":"Error",      "usage":"Error message, validation text"},
-  {"name":"color/error/soft",      "light":"#FEF2F2",  "dark":"#460809",  "category":"Error",      "usage":"Error alert background"},
-  {"name":"color/error/border",    "light":"#FFC9C9",  "dark":"#9F0712",  "category":"Error",      "usage":"Error input border, error card ring"},
-  {"name":"color/info/default",    "light":"#0084D1",  "dark":"#00A6F4",  "category":"Info",       "usage":"Informational icon & indicator"},
-  {"name":"color/info/text",       "light":"#0069A8",  "dark":"#74D4FF",  "category":"Info",       "usage":"Info message text"},
-  {"name":"color/info/soft",       "light":"#F0F9FF",  "dark":"#052F4A",  "category":"Info",       "usage":"Info alert / notification background"},
-  {"name":"color/info/border",     "light":"#B8E6FE",  "dark":"#00598A",  "category":"Info",       "usage":"Info component border"}
+  {
+    "name": "color/bg/surface",
+    "light": "#FFFFFF",
+    "dark": "#1E2939",
+    "category": "Background",
+    "usage": "Default page & card background"
+  },
+  {
+    "name": "color/bg/secondary",
+    "light": "#F9FAFB",
+    "dark": "#1D293D",
+    "category": "Background",
+    "usage": "Alternate row, sidebar, input fill"
+  },
+  {
+    "name": "color/bg/tertiary",
+    "light": "#F3F4F6",
+    "dark": "#314158",
+    "category": "Background",
+    "usage": "Subtle hover states, skeleton loaders"
+  },
+  {
+    "name": "color/bg/inverse",
+    "light": "#101828",
+    "dark": "#F9FAFB",
+    "category": "Background",
+    "usage": "Dark-on-light reversed surfaces"
+  },
+  {
+    "name": "color/bg/overlay",
+    "light": "rgba(16,24,40,0.48)",
+    "dark": "rgba(16,24,40,0.72)",
+    "category": "Background",
+    "usage": "Modal scrim / backdrop"
+  },
+  {
+    "name": "color/text/primary",
+    "light": "#101828",
+    "dark": "#F9FAFB",
+    "category": "Text",
+    "usage": "Headings, body copy, labels"
+  },
+  {
+    "name": "color/text/secondary",
+    "light": "#4A5565",
+    "dark": "#90A1B9",
+    "category": "Text",
+    "usage": "Supporting text, metadata"
+  },
+  {
+    "name": "color/text/tertiary",
+    "light": "#6A7282",
+    "dark": "#62748E",
+    "category": "Text",
+    "usage": "Placeholder-adjacent, muted info"
+  },
+  {
+    "name": "color/text/disabled",
+    "light": "#D1D5DC",
+    "dark": "#45556C",
+    "category": "Text",
+    "usage": "Disabled inputs, unavailable actions"
+  },
+  {
+    "name": "color/text/inverse",
+    "light": "#FFFFFF",
+    "dark": "#101828",
+    "category": "Text",
+    "usage": "Text on dark / inverted backgrounds"
+  },
+  {
+    "name": "color/text/placeholder",
+    "light": "#99A1AF",
+    "dark": "#62748E",
+    "category": "Text",
+    "usage": "Form input placeholder text"
+  },
+  {
+    "name": "color/border/default",
+    "light": "#E5E7EB",
+    "dark": "#314158",
+    "category": "Border",
+    "usage": "Dividers, cards, input outlines"
+  },
+  {
+    "name": "color/border/strong",
+    "light": "#D1D5DC",
+    "dark": "#45556C",
+    "category": "Border",
+    "usage": "Emphasis borders, separators"
+  },
+  {
+    "name": "color/border/subtle",
+    "light": "#F3F4F6",
+    "dark": "#1D293D",
+    "category": "Border",
+    "usage": "Very light inner rules"
+  },
+  {
+    "name": "color/border/focus",
+    "light": "#155DFC",
+    "dark": "#2B7FFF",
+    "category": "Border",
+    "usage": "Keyboard-focus ring on interactive elements"
+  },
+  {
+    "name": "color/accent/default",
+    "light": "#155DFC",
+    "dark": "#2B7FFF",
+    "category": "Accent",
+    "usage": "Primary CTA, links, active indicators"
+  },
+  {
+    "name": "color/accent/hover",
+    "light": "#1447E6",
+    "dark": "#193CB8",
+    "category": "Accent",
+    "usage": "Hover state of accent elements"
+  },
+  {
+    "name": "color/accent/text",
+    "light": "#1447E6",
+    "dark": "#51A2FF",
+    "category": "Accent",
+    "usage": "Accent-coloured text on surfaces"
+  },
+  {
+    "name": "color/accent/soft",
+    "light": "#EEF6FF",
+    "dark": "#162455",
+    "category": "Accent",
+    "usage": "Low-emphasis accent fill (chips, tags)"
+  },
+  {
+    "name": "color/accent/muted",
+    "light": "#DBEAFE",
+    "dark": "#1C398E",
+    "category": "Accent",
+    "usage": "Selected rows, active backgrounds"
+  },
+  {
+    "name": "color/success/default",
+    "light": "#00A63E",
+    "dark": "#00C950",
+    "category": "Success",
+    "usage": "Positive status icon & border"
+  },
+  {
+    "name": "color/success/text",
+    "light": "#008236",
+    "dark": "#05DF72",
+    "category": "Success",
+    "usage": "Success message text"
+  },
+  {
+    "name": "color/success/soft",
+    "light": "#F0FDF4",
+    "dark": "#032E15",
+    "category": "Success",
+    "usage": "Success alert / banner background"
+  },
+  {
+    "name": "color/success/border",
+    "light": "#B9F8CF",
+    "dark": "#016630",
+    "category": "Success",
+    "usage": "Success component border"
+  },
+  {
+    "name": "color/warning/default",
+    "light": "#E17100",
+    "dark": "#FE9A00",
+    "category": "Warning",
+    "usage": "Caution icon, badge background"
+  },
+  {
+    "name": "color/warning/text",
+    "light": "#BB4D00",
+    "dark": "#FFD230",
+    "category": "Warning",
+    "usage": "Warning message text"
+  },
+  {
+    "name": "color/warning/soft",
+    "light": "#FFFBEB",
+    "dark": "#461901",
+    "category": "Warning",
+    "usage": "Warning alert background"
+  },
+  {
+    "name": "color/warning/border",
+    "light": "#FEE685",
+    "dark": "#973C00",
+    "category": "Warning",
+    "usage": "Warning component border"
+  },
+  {
+    "name": "color/error/default",
+    "light": "#E7000B",
+    "dark": "#FB2C36",
+    "category": "Error",
+    "usage": "Destructive action, error icon"
+  },
+  {
+    "name": "color/error/text",
+    "light": "#C10007",
+    "dark": "#FF6467",
+    "category": "Error",
+    "usage": "Error message, validation text"
+  },
+  {
+    "name": "color/error/soft",
+    "light": "#FEF2F2",
+    "dark": "#460809",
+    "category": "Error",
+    "usage": "Error alert background"
+  },
+  {
+    "name": "color/error/border",
+    "light": "#FFC9C9",
+    "dark": "#9F0712",
+    "category": "Error",
+    "usage": "Error input border, error card ring"
+  },
+  {
+    "name": "color/info/default",
+    "light": "#0084D1",
+    "dark": "#00A6F4",
+    "category": "Info",
+    "usage": "Informational icon & indicator"
+  },
+  {
+    "name": "color/info/text",
+    "light": "#0069A8",
+    "dark": "#74D4FF",
+    "category": "Info",
+    "usage": "Info message text"
+  },
+  {
+    "name": "color/info/soft",
+    "light": "#F0F9FF",
+    "dark": "#052F4A",
+    "category": "Info",
+    "usage": "Info alert / notification background"
+  },
+  {
+    "name": "color/info/border",
+    "light": "#B8E6FE",
+    "dark": "#00598A",
+    "category": "Info",
+    "usage": "Info component border"
+  }
 ];
 
-// Spacing tokens (includes letter-spacing/tracking tokens — filtered by name in render)
-window.DS.spacing = [
-  {"name":"spacing/1","value":1},{"name":"spacing/2","value":2},{"name":"spacing/4","value":4},
-  {"name":"spacing/6","value":6},{"name":"spacing/8","value":8},{"name":"spacing/10","value":10},
-  {"name":"spacing/12","value":12},{"name":"spacing/14","value":14},{"name":"spacing/16","value":16},
-  {"name":"spacing/20","value":20},{"name":"spacing/24","value":24},{"name":"spacing/28","value":28},
-  {"name":"spacing/32","value":32},{"name":"spacing/36","value":36},{"name":"spacing/40","value":40},
-  {"name":"spacing/44","value":44},{"name":"spacing/48","value":48},{"name":"spacing/56","value":56},
-  {"name":"spacing/64","value":64},{"name":"spacing/72","value":72},{"name":"spacing/80","value":80},
-  {"name":"spacing/96","value":96},{"name":"spacing/112","value":112},{"name":"spacing/128","value":128},
-  {"name":"spacing/160","value":160},{"name":"spacing/192","value":192},{"name":"spacing/256","value":256},
-  {"name":"spacing/320","value":320},{"name":"spacing/384","value":384},
-  {"name":"tracking-tighter","value":-0.8},{"name":"tracking-tight","value":-0.4},
-  {"name":"tracking-normal","value":0},{"name":"tracking-wide","value":0.4},
-  {"name":"tracking-wider","value":0.8},{"name":"tracking-widest","value":1.6}
-];
+// Spacing tokens
+window.DS.spacing = [];
 
 // Border radius tokens
-window.DS.radius = [
-  {"name":"border-radius/rounded-0",    "value":0},
-  {"name":"border-radius/rounded-sm",   "value":2},
-  {"name":"border-radius/rounded",      "value":4},
-  {"name":"border-radius/rounded-md",   "value":6},
-  {"name":"border-radius/rounded-lg",   "value":8},
-  {"name":"border-radius/rounded-xl",   "value":12},
-  {"name":"border-radius/rounded-2xl",  "value":16},
-  {"name":"border-radius/rounded-3xl",  "value":24},
-  {"name":"border-radius/rounded-full", "value":9999}
-];
+window.DS.radius = [];
 
 // Letter spacing tokens
 window.DS.letterSpacing = [];
